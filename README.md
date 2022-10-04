@@ -6,9 +6,10 @@ Config plugin to auto configure `hypertrack-sdk-expo` when the native code is ge
 
 Ensure you use versions that work together!
 
-| `expo` | `hypertrack-sdk-expo` | `hypertrack-sdk-react-native` |
-| ------ | --------------------- | ----------------------------- |
-| 45.0.0 | 1.0.0                 | 7.19.1                        |
+|  `expo`  | `hypertrack-sdk-expo` | `hypertrack-sdk-react-native` |
+| -------- | --------------------- | ----------------------------- |
+| 45.0.0   | 1.0.0                 | 7.19.1                        |
+| 46.0.14  | 1.1.0                 | 8.2.1                         |
 
 ## Expo installation
 
