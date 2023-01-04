@@ -6,7 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.1.0] - 2022-10-4
+## [1.2.0] - 2023-01-04
+### Changed
+- Bumped the minimum deployment target to iOS 13, in lockstep with Expo
+
+## [1.1.0] - 2022-10-04
 ### Changed
 - Use ExpoAppDelegateSubscriber protocol to proxy AppDelegate methods ([#2](https://github.com/hypertrack/sdk-expo/pull/2))
 

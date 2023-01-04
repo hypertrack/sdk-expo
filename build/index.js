@@ -8,4 +8,4 @@ const withHyperTrack = (config, props) => {
     config = (0, withHyperTrackAndroid_1.withHyperTrackAndroid)(config, props);
     return config;
 };
-exports.default = (0, config_plugins_1.createRunOncePlugin)(withHyperTrack, "hypertrack-sdk-expo", "1.1.0");
+exports.default = (0, config_plugins_1.createRunOncePlugin)(withHyperTrack, "hypertrack-sdk-expo", "1.2.0");
