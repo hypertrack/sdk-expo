@@ -9,12 +9,11 @@ import {
   MergeResults,
 } from "@expo/config-plugins/build/utils/generateCode";
 
-const NSLocationAlwaysAndWhenInUseUsageDescription =
-  "To let your friends and family track you live, you need to allow HyperTrack Live to access this device's location";
-const NSLocationAlwaysUsageDescription =
-  "To let your friends and family track you live, you need to allow HyperTrack Live to access this device's location";
-const NSLocationWhenInUseUsageDescription =
-  "To let your friends and family track you live, you need to allow HyperTrack Live to access this device's location";
+const LOCATION_PERMISSION_HINT = "You need this permission to allow HyperTrack to track your location"
+
+const NSLocationAlwaysAndWhenInUseUsageDescription = LOCATION_PERMISSION_HINT
+const NSLocationAlwaysUsageDescription = LOCATION_PERMISSION_HINT
+const NSLocationWhenInUseUsageDescription = LOCATION_PERMISSION_HINT
 const NSMotionUsageDescription =
   "To track your movement accurately, HyperTrack Live needs to access motion sensors";
 
