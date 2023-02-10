@@ -19,5 +19,5 @@ const withHyperTrack: ConfigPlugin<Props> = (config, props) => {
 export default createRunOncePlugin(
   withHyperTrack,
   "hypertrack-sdk-expo",
-  "1.2.0"
+  "2.0.0"
 );

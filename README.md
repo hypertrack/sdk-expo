@@ -1,44 +1,36 @@
-# hypertrack-sdk-expo
+# HyperTrack Expo config plugin for React Native HyperTrack SDK
 
-Config plugin to auto configure `hypertrack-sdk-expo` when the native code is generated (`expo prebuild`).
+![GitHub](https://img.shields.io/github/license/hypertrack/sdk-expo.svg) 
+![npm](https://img.shields.io/npm/v/hypertrack-sdk-expo.svg) 
 
-## Versioning
+[HyperTrack](https://www.hypertrack.com) lets you add live location tracking to your mobile app. Live location is made available along with ongoing activity, tracking controls and tracking outage with reasons.
 
-Ensure you use versions that work together!
+React Native HyperTrack SDK is a wrapper around native iOS and Android SDKs that allows to integrate HyperTrack into React Native apps.
 
-|  `expo`  | `hypertrack-sdk-expo` | `hypertrack-sdk-react-native` |
-| -------- | --------------------- | ----------------------------- |
-| 45.0.0   | 1.0.0                 | 7.19.1                        |
-| 46.0.14  | 1.1.0                 | 8.2.1                         |
+Expo [config plugin](https://docs.expo.io/guides/config-plugins/) enables usage of React Native HyperTrack SDK with Expo managed workflow.
 
-## Expo installation
+For information about how to get started with Expo and React Native HyperTrack SDK, please check this [Guide](https://www.hypertrack.com/docs/install-sdk-expo).
 
-> Tested against Expo SDK 45
+## Installation
 
-> This package cannot be used in the "Expo Go" app because [it requires custom native code](https://docs.expo.io/workflow/customizing/).
-> First install the package with yarn, npm, or [`expo install`](https://docs.expo.io/workflow/expo-cli/#expo-install).
+[Install HyperTrack Expo plugin from NPM](https://www.npmjs.com/package/hypertrack-sdk-expo)
+[Install React Native HyperTrack SDK from NPM](https://www.npmjs.com/package/hypertrack-sdk-react-native)
 
-```sh
-#npm
-npm install hypertrack-sdk-react-native hypertrack-sdk-expo expo-build-properties
+### Add HyperTrack Expo plugin to the app
 
-#yarn
-yarn add hypertrack-sdk-react-native hypertrack-sdk-expo expo-build-properties
-```
-
-After installing this npm package, add the [config plugin](https://docs.expo.io/guides/config-plugins/) to the [`plugins`](https://docs.expo.io/versions/latest/config/app/#plugins) array of your `app.json` or `app.config.js`:
+Add `hypertrack-sdk-expo` to [`plugins`](https://docs.expo.io/versions/latest/config/app/#plugins) array of your `app.json` or `app.config.js`:
 
 ```json
 {
   "expo": {
     "plugins": [
-      "hypertrack-sdk-expo",
       [
-        "expo-build-properties",
+        "hypertrack-sdk-expo",
         {
-          "android": {
-            "minSdkVersion": 23
-          }
+          "locationPermission":
+            "PUT_YOUR_PERMISSION_HINT_MESSAGE_HERE",
+          "motionPermission":
+            "PUT_YOUR_PERMISSION_HINT_MESSAGE_HERE"
         }
       ]
     ]
@@ -46,40 +38,61 @@ After installing this npm package, add the [config plugin](https://docs.expo.io/
 }
 ```
 
-> NOTE: to work properly on Android, this package requires `minSdkVersion=23`
+Configuring permission permission purpose strings (`locationPermission`, `motionPermission`) is described below.
 
-Next, rebuild your app as described in the ["Adding custom native code"](https://docs.expo.io/workflow/customizing/) guide.
+### Set required build properties
 
-## API
+Use [expo-build-properties](https://docs.expo.dev/versions/latest/sdk/build-properties/) to set build properties
 
-The plugin provides props for extra customization. Every time you change the props or plugins, you'll need to rebuild (and `prebuild`) the native app. If no extra properties are added, defaults will be used.
-
-- `locationPermission` (_string_): Sets the iOS `NSLocationAlwaysAndWhenInUseUsageDescription NSLocationAlwaysUsageDescription NSLocationWhenInUseUsageDescription` permissions message to the `Info.plist`. Defaults to `To let your friends and family track you live, you need to allow HyperTrack Live to access this device's location`.
-- `motionPermission` (_string_): Sets the iOS `NSMotionUsageDescription` permission message to the `Info.plist`. Defaults to `To track your movement accurately, HyperTrack Live needs to access motion sensors`.
-
-`app.config.js`
-
-```ts
-export default {
-  plugins: [
-    [
-      "hypertrack-sdk-expo",
-      {
-        locationPermission:
-          "To let your friends and family track you live, you need to allow HyperTrack Live to access this device's location",
-        motionPermission:
-          "To track your movement accurately, HyperTrack Live needs to access motion sensors",
-      },
-    ],
-  ],
-};
+Add this to `plugins` in `app.json` or `app.config.js`:
+```json
+[
+  "expo-build-properties",
+  {
+    "android": {
+      "minSdkVersion": 23
+    }
+  }
+]
 ```
 
-## Important Notes
+### Set up push notifications
 
-- For iOS, to enable push notifcations you need to add [push notifications credential](https://docs.expo.dev/app-signing/managed-credentials/#ios).
-- For Android, to enable push notifcations you need to use [FCM for Push Notifications](https://docs.expo.dev/push-notifications/using-fcm/).
-- For Android, this plugin changes the minimum sdk version to `23` (from `21`) which may break other packages in your app!
+- For iOS, to enable push notifcations you need to add [push notifications credentials](https://docs.expo.dev/app-signing/managed-credentials/#ios)
+- For Android, to enable push notifcations you need to use [FCM for Push Notifications](https://docs.expo.dev/push-notifications/using-fcm/)
+
+## Sample code
+
+[Quickstart Expo app](https://github.com/hypertrack/quickstart-expo)
+
+## Wrapper API Documentation
+
+[Wrapper API Documentation](https://hypertrack.github.io/sdk-react-native/)
+
+## Versioning
+
+Ensure you use versions that work together!
+
+|  `expo`  | `hypertrack-sdk-expo` | `hypertrack-sdk-react-native` |
+| -------- | --------------------- | ----------------------------- |
+| 45.0.0   | 1.0.0                 | ^7.19.1                       |
+| 46.0.14+ | 1.1.0                 | ^8.2.1                        |
+| 46.0.14+ | 1.2.0                 | ^8.2.1                        |
+| 46.0.14+ | 2.0.0                 | ^9.0.0                        |
+
+## Configuring permission purpose strings
+
+iOS requires specifying [permission purpose strings](https://hypertrack.com/docs/install-sdk-ios/#add-location-and-motion-purpose-strings) in `Info.plist` for app to build.
+
+You can use plugin parameters described below to set the strings. 
+
+ Every time you change the props or plugins, you'll need to rebuild (and `prebuild`) the native app. 
+
+ If no extra properties are added, defaults will be used.
+
+- `locationPermission` (_string_): Sets `NSLocationAlwaysAndWhenInUseUsageDescription`, `NSLocationAlwaysUsageDescription`, `NSLocationWhenInUseUsageDescription` 
+
+- `motionPermission` (_string_): Sets `NSMotionUsageDescription` 
 
 ## Manual Setup
 
