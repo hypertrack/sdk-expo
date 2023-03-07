@@ -13,10 +13,12 @@ For information about how to get started with Expo and React Native HyperTrack S
 
 ## Installation
 
-[Install HyperTrack Expo plugin from NPM](https://www.npmjs.com/package/hypertrack-sdk-expo)
-[Install React Native HyperTrack SDK from NPM](https://www.npmjs.com/package/hypertrack-sdk-react-native)
+1. Install HyperTrack Expo [NPM package](https://www.npmjs.com/package/hypertrack-sdk-expo) 
+  - `npx expo install hypertrack-sdk-expo`
+2. Install React Native HyperTrack SDK [NPM package](https://www.npmjs.com/package/hypertrack-sdk-react-native) 
+  - `npx expo install hypertrack-sdk-react-native`
 
-### Add HyperTrack Expo plugin to the app
+### 3. Add HyperTrack Expo plugin to the app
 
 Add `hypertrack-sdk-expo` to [`plugins`](https://docs.expo.io/versions/latest/config/app/#plugins) array of your `app.json` or `app.config.js`:
 
@@ -40,7 +42,7 @@ Add `hypertrack-sdk-expo` to [`plugins`](https://docs.expo.io/versions/latest/co
 
 Configuring permission permission purpose strings (`locationPermission`, `motionPermission`) is described below.
 
-### Set required build properties
+### 4. Set required build properties
 
 Use [expo-build-properties](https://docs.expo.dev/versions/latest/sdk/build-properties/) to set build properties
 
@@ -56,7 +58,7 @@ Add this to `plugins` in `app.json` or `app.config.js`:
 ]
 ```
 
-### Set up push notifications
+### 5. Set up push notifications
 
 - For iOS, to enable push notifcations you need to add [push notifications credentials](https://docs.expo.dev/app-signing/managed-credentials/#ios)
 - For Android, to enable push notifcations you need to use [FCM for Push Notifications](https://docs.expo.dev/push-notifications/using-fcm/)
