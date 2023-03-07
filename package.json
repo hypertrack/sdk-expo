@@ -39,7 +39,7 @@
     "expo-modules-core": "^1.0.0"
   },
   "peerDependencies": {
-    "expo": "^47.0.0"
+    "expo": "*"
   },
   "upstreamPackage": "hypertrack-sdk-react-native"
 }
