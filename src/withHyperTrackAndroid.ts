@@ -27,12 +27,12 @@ export function addMaven(src: string) {
   return mergeContents({
     tag: "hypertrack-sdk-expo-build-gradle",
     src,
-    newSrc: `maven {
-        name 'hypertrack'
-        url 'https://s3-us-west-2.amazonaws.com/m2.hypertrack.com/'
-    }`,
-    anchor: /mavenCentral {/,
-    offset: -2,
+    newSrc: `        maven {
+            name 'hypertrack'
+            url 'https://s3-us-west-2.amazonaws.com/m2.hypertrack.com/'
+          }`,
+    anchor: /allprojects {/,
+    offset: 2,
     comment: "//",
   });
 }
