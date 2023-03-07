@@ -1,6 +1,6 @@
 {
   "name": "hypertrack-sdk-expo",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "license": "MIT",
   "description": "Config plugin to auto configure hypertrack-sdk-react-native on prebuild",
   "homepage": "https://github.com/hypertrack/sdk-expo",
@@ -31,7 +31,7 @@
   "repository": "https://github.com/hypertrack/sdk-expo",
   "author": "HyperTrack <help@hypertrack.com> (https://hypertrack.com)",
   "devDependencies": {
-    "expo": "^47.0.0",
+    "expo": "^48.0.0",
     "expo-module-scripts": "^3.0.0"
   },
   "dependencies": {
@@ -39,7 +39,7 @@
     "expo-modules-core": "^1.0.0"
   },
   "peerDependencies": {
-    "expo": "^47.0.0"
+    "expo": "^48.0.0"
   },
   "upstreamPackage": "hypertrack-sdk-react-native"
 }

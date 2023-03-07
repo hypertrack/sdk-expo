@@ -1,7 +1,7 @@
 # HyperTrack Expo config plugin for React Native HyperTrack SDK
 
-![GitHub](https://img.shields.io/github/license/hypertrack/sdk-expo.svg) 
-![npm](https://img.shields.io/npm/v/hypertrack-sdk-expo.svg) 
+![GitHub](https://img.shields.io/github/license/hypertrack/sdk-expo.svg)
+![hypertrack-sdk-expo](https://img.shields.io/npm/v/hypertrack-sdk-expo?label=hypertrack-sdk-expo)
 
 [HyperTrack](https://www.hypertrack.com) lets you add live location tracking to your mobile app. Live location is made available along with ongoing activity, tracking controls and tracking outage with reasons.
 
@@ -13,12 +13,86 @@ For information about how to get started with Expo and React Native HyperTrack S
 
 ## Installation
 
-[Install HyperTrack Expo plugin from NPM](https://www.npmjs.com/package/hypertrack-sdk-expo)
-[Install React Native HyperTrack SDK from NPM](https://www.npmjs.com/package/hypertrack-sdk-react-native)
+- `npx expo install hypertrack-sdk-expo`
+- `npx expo install hypertrack-sdk-react-native`
 
 ### Add HyperTrack Expo plugin to the app
 
 Add `hypertrack-sdk-expo` to [`plugins`](https://docs.expo.io/versions/latest/config/app/#plugins) array of your `app.json` or `app.config.js`:
+
+```json
+{
+  "expo": {
+    "plugins": [
+      [
+        "hypertrack-sdk-expo"
+      ]
+    ]
+  }
+}
+```
+
+### Set required build properties
+
+Use [expo-build-properties](https://docs.expo.dev/versions/latest/sdk/build-properties/) to set build properties.
+
+Run `npx expo install expo-build-properties` and add this to `plugins` in `app.json` or `app.config.js`:
+```json
+[
+  "expo-build-properties",
+  {
+    "android": {
+      "minSdkVersion": 23
+    }
+  }
+]
+```
+
+### Set up push notifications
+
+- For iOS, to enable push notifcations you need to add [push notifications credentials](https://docs.expo.dev/app-signing/managed-credentials/#ios)
+- For Android, to enable push notifcations you need to use [FCM for Push Notifications](https://docs.expo.dev/push-notifications/using-fcm/)
+
+#### Manual Setup
+
+For `Bare workflow projects, you can follow the [manual setup guide for React Native](https://hypertrack.com/docs/install-sdk-react-native/#set-up-silent-push-notifications).
+
+## Sample code
+
+[Quickstart Expo app](https://github.com/hypertrack/quickstart-expo)
+
+## Wrapper API Documentation
+
+[Wrapper API Documentation](https://hypertrack.github.io/sdk-react-native/)
+
+## Versioning
+
+Ensure you use versions that work together!
+
+| `expo`   | `hypertrack-sdk-expo` | `hypertrack-sdk-react-native` |
+|----------|-----------------------|-------------------------------|
+| ^45.0.0  | 1.0.0                 | ^7.19.1                       |
+| ^46.0.14 | 1.1.0                 | ^8.2.1                        |
+| ^46.0.14 | 1.2.0                 | ^8.2.1                        |
+| ^47.0.0  | 2.0.0                 | ^9.0.0                        |
+| ^48.0.0  | 3.0.0                 | ^9.0.0                        |
+
+## Configuring permission purpose strings
+
+iOS requires specifying [permission purpose strings](https://hypertrack.com/docs/install-sdk-ios/#add-location-and-motion-purpose-strings) in `Info.plist` for app to build.
+
+You can use plugin parameters described below to set the strings.
+
+ Every time you change the props or plugins, you'll need to rebuild (and `prebuild`) the native app.
+
+ If no extra properties are added, defaults will be used.
+
+- `locationPermission` (_string_): Sets `NSLocationAlwaysAndWhenInUseUsageDescription`, `NSLocationAlwaysUsageDescription`, `NSLocationWhenInUseUsageDescription`
+
+- `motionPermission` (_string_): Sets `NSMotionUsageDescription`
+- 
+
+Edit `hypertrack-sdk-expo` item in your `app.json` or `app.config.js`:
 
 ```json
 {
@@ -37,63 +111,3 @@ Add `hypertrack-sdk-expo` to [`plugins`](https://docs.expo.io/versions/latest/co
   }
 }
 ```
-
-Configuring permission permission purpose strings (`locationPermission`, `motionPermission`) is described below.
-
-### Set required build properties
-
-Use [expo-build-properties](https://docs.expo.dev/versions/latest/sdk/build-properties/) to set build properties
-
-Add this to `plugins` in `app.json` or `app.config.js`:
-```json
-[
-  "expo-build-properties",
-  {
-    "android": {
-      "minSdkVersion": 23
-    }
-  }
-]
-```
-
-### Set up push notifications
-
-- For iOS, to enable push notifcations you need to add [push notifications credentials](https://docs.expo.dev/app-signing/managed-credentials/#ios)
-- For Android, to enable push notifcations you need to use [FCM for Push Notifications](https://docs.expo.dev/push-notifications/using-fcm/)
-
-## Sample code
-
-[Quickstart Expo app](https://github.com/hypertrack/quickstart-expo)
-
-## Wrapper API Documentation
-
-[Wrapper API Documentation](https://hypertrack.github.io/sdk-react-native/)
-
-## Versioning
-
-Ensure you use versions that work together!
-
-|  `expo`  | `hypertrack-sdk-expo` | `hypertrack-sdk-react-native` |
-| -------- | --------------------- | ----------------------------- |
-| 45.0.0   | 1.0.0                 | ^7.19.1                       |
-| 46.0.14+ | 1.1.0                 | ^8.2.1                        |
-| 46.0.14+ | 1.2.0                 | ^8.2.1                        |
-| 46.0.14+ | 2.0.0                 | ^9.0.0                        |
-
-## Configuring permission purpose strings
-
-iOS requires specifying [permission purpose strings](https://hypertrack.com/docs/install-sdk-ios/#add-location-and-motion-purpose-strings) in `Info.plist` for app to build.
-
-You can use plugin parameters described below to set the strings. 
-
- Every time you change the props or plugins, you'll need to rebuild (and `prebuild`) the native app. 
-
- If no extra properties are added, defaults will be used.
-
-- `locationPermission` (_string_): Sets `NSLocationAlwaysAndWhenInUseUsageDescription`, `NSLocationAlwaysUsageDescription`, `NSLocationWhenInUseUsageDescription` 
-
-- `motionPermission` (_string_): Sets `NSMotionUsageDescription` 
-
-## Manual Setup
-
-For bare workflow projects, you can follow the [manual setup guide](https://hypertrack.com/docs/install-sdk-react-native/#step-4-set-up-silent-push-notifications).
