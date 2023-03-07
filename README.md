@@ -44,9 +44,9 @@ Configuring permission permission purpose strings (`locationPermission`, `motion
 
 ### 4. Set required build properties
 
-Use [expo-build-properties](https://docs.expo.dev/versions/latest/sdk/build-properties/) to set build properties
+Use [expo-build-properties](https://docs.expo.dev/versions/latest/sdk/build-properties/) to set build properties.
 
-Add this to `plugins` in `app.json` or `app.config.js`:
+Run `npx expo install expo-build-properties` and add this to `plugins` in `app.json` or `app.config.js`:
 ```json
 [
   "expo-build-properties",
