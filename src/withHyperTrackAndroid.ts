@@ -1,11 +1,24 @@
 import {
   ConfigPlugin,
   WarningAggregator,
+  withAndroidManifest,
   withAppBuildGradle,
   withProjectBuildGradle,
 } from "@expo/config-plugins";
 import { mergeContents } from "@expo/config-plugins/build/utils/generateCode";
 import { Props } from ".";
+import { ExpoConfig } from "@expo/config-types";
+import {
+  ManifestApplication,
+  addMetaDataItemToMainApplication,
+} from "@expo/config-plugins/build/android/Manifest";
+
+export const withHyperTrackAndroid: ConfigPlugin<Props> = (config, props) => {
+  withAndroidPackage(config);
+  withAndroidPackagingOptions(config);
+  updateAndroidManifest(config, props);
+  return config;
+};
 
 export const withAndroidPackage: ConfigPlugin = (config) => {
   return withProjectBuildGradle(config, (config) => {
@@ -76,8 +89,47 @@ const packagingOptionsContents = `
     }
 `;
 
-export const withHyperTrackAndroid: ConfigPlugin<Props> = (config, props) => {
-  withAndroidPackage(config);
-  withAndroidPackagingOptions(config);
-  return config;
+const updateAndroidManifest: ConfigPlugin<Props> = (config, props) => {
+  return withAndroidManifest(config, (newConfig) => {
+    const {
+      publishableKey,
+      allowMockLocations,
+      loggingEnabled,
+      automaticallyRequestPermissions,
+    } = props || {};
+
+    const applications = () => newConfig.modResults.manifest.application;
+
+    newConfig.modResults.manifest.application = applications()
+      ?.map((application: ManifestApplication) => {
+        return addMetaDataItemToMainApplication(
+          application,
+          "HyperTrackPublishableKey",
+          publishableKey!
+        );
+      })
+      ?.map((application: ManifestApplication) => {
+        return addMetaDataItemToMainApplication(
+          application,
+          "HyperTrackAllowMockLocations",
+          allowMockLocations ? "true" : "false"
+        );
+      })
+      ?.map((application: ManifestApplication) => {
+        return addMetaDataItemToMainApplication(
+          application,
+          "HyperTrackLoggingEnabled",
+          loggingEnabled ? "true" : "false"
+        );
+      })
+      ?.map((application: ManifestApplication) => {
+        return addMetaDataItemToMainApplication(
+          application,
+          "HyperTrackAutomaticallyRequestPermissions",
+          automaticallyRequestPermissions ? "true" : "false"
+        );
+      });
+
+    return newConfig;
+  });
 };
