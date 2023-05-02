@@ -98,6 +98,10 @@ const updateAndroidManifest: ConfigPlugin<Props> = (config, props) => {
       automaticallyRequestPermissions,
     } = props || {};
 
+    if (!publishableKey) {
+      throw new Error("'publishableKey' param is required");
+    }
+
     const applications = () => newConfig.modResults.manifest.application;
 
     newConfig.modResults.manifest.application = applications()

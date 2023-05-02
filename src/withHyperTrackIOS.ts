@@ -25,6 +25,10 @@ const withBackgroundModes: ConfigPlugin<Props> = (config, props) => {
     loggingEnabled,
   } = props || {};
 
+  if (!publishableKey) {
+    throw new Error("'publishableKey' param is required");
+  }
+
   const BACKGROUND_MODE_KEYS = ["location", "remote-notification"];
   return withInfoPlist(config, (newConfig) => {
     // Set UIBackgroundModes
