@@ -76,6 +76,7 @@ Ensure you use versions that work together!
 | ^46.0.14 | 1.2.0                 | ^8.2.1                        |
 | ^47.0.0  | 2.0.0                 | ^9.0.0                        |
 | ^48.0.0  | 3.0.0                 | ^9.0.0                        |
+| ^49.0.0  | 4.0.0                 | ^11.0.2                       |
 
 ## Configuring permission purpose strings
 
