@@ -7,8 +7,6 @@ const LOCATION_PERMISSION_HINT =
 const NSLocationAlwaysAndWhenInUseUsageDescription = LOCATION_PERMISSION_HINT;
 const NSLocationAlwaysUsageDescription = LOCATION_PERMISSION_HINT;
 const NSLocationWhenInUseUsageDescription = LOCATION_PERMISSION_HINT;
-const NSMotionUsageDescription =
-  "To track your movement accurately, HyperTrack Live needs to access motion sensors";
 
 export const withHyperTrackIOS: ConfigPlugin<Props> = (config, props) => {
   withBackgroundModes(config, props);
@@ -18,7 +16,6 @@ export const withHyperTrackIOS: ConfigPlugin<Props> = (config, props) => {
 const withBackgroundModes: ConfigPlugin<Props> = (config, props) => {
   const {
     locationPermission: locationPermissionDescription,
-    motionPermission: motionPermissionDescription,
     publishableKey,
     automaticallyRequestPermissions,
     allowMockLocations,
@@ -49,8 +46,6 @@ const withBackgroundModes: ConfigPlugin<Props> = (config, props) => {
       locationPermissionDescription ?? NSLocationAlwaysUsageDescription;
     newConfig.modResults.NSLocationWhenInUseUsageDescription =
       locationPermissionDescription ?? NSLocationWhenInUseUsageDescription;
-    newConfig.modResults.NSMotionUsageDescription =
-      motionPermissionDescription ?? NSMotionUsageDescription;
 
     // Set SDK init params
     newConfig.modResults.HyperTrackPublishableKey =
