@@ -40,7 +40,7 @@ Run `npx expo install expo-build-properties` and add this to `plugins` in `app.j
   "expo-build-properties",
   {
     "android": {
-      "minSdkVersion": 21 // was 23 for old SDK (version 6.X)
+      "minSdkVersion": 21
     }
   }
 ]
