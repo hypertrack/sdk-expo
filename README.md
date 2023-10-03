@@ -1,7 +1,8 @@
 # HyperTrack Expo config plugin for React Native HyperTrack SDK
 
-![GitHub](https://img.shields.io/github/license/hypertrack/sdk-expo.svg)
-![hypertrack-sdk-expo](https://img.shields.io/npm/v/hypertrack-sdk-expo?label=hypertrack-sdk-expo)
+[![GitHub](https://img.shields.io/github/license/hypertrack/sdk-expo?color=orange)](./LICENSE)
+[![npm](https://img.shields.io/npm/v/hypertrack-sdk-expo)](https://www.npmjs.com/package/hypertrack-sdk-expo)
+[![hypertrack-sdk-react-native](https://img.shields.io/badge/hypertrack_sdk_react_native-11.0.2-brightgreen.svg)](https://www.npmjs.com/package/hypertrack-sdk-expo)
 
 [HyperTrack](https://www.hypertrack.com) lets you add live location tracking to your mobile app. Live location is made available along with ongoing activity, tracking controls and tracking outage with reasons.
 
@@ -23,11 +24,7 @@ Add `hypertrack-sdk-expo` to [`plugins`](https://docs.expo.io/versions/latest/co
 ```json
 {
   "expo": {
-    "plugins": [
-      [
-        "hypertrack-sdk-expo"
-      ]
-    ]
+    "plugins": [["hypertrack-sdk-expo"]]
   }
 }
 ```
@@ -37,6 +34,7 @@ Add `hypertrack-sdk-expo` to [`plugins`](https://docs.expo.io/versions/latest/co
 Use [expo-build-properties](https://docs.expo.dev/versions/latest/sdk/build-properties/) to set build properties.
 
 Run `npx expo install expo-build-properties` and add this to `plugins` in `app.json` or `app.config.js`:
+
 ```json
 [
   "expo-build-properties",
@@ -70,12 +68,13 @@ For `Bare workflow projects, you can follow the [manual setup guide for React Na
 Ensure you use versions that work together!
 
 | `expo`   | `hypertrack-sdk-expo` | `hypertrack-sdk-react-native` |
-|----------|-----------------------|-------------------------------|
+| -------- | --------------------- | ----------------------------- |
 | ^45.0.0  | 1.0.0                 | ^7.19.1                       |
 | ^46.0.14 | 1.1.0                 | ^8.2.1                        |
 | ^46.0.14 | 1.2.0                 | ^8.2.1                        |
 | ^47.0.0  | 2.0.0                 | ^9.0.0                        |
 | ^48.0.0  | 3.0.0                 | ^9.0.0                        |
+| ^49.0.0  | 4.0.0                 | ^11.0.2                       |
 
 ## Configuring permission purpose strings
 
@@ -83,14 +82,13 @@ iOS requires specifying [permission purpose strings](https://hypertrack.com/docs
 
 You can use plugin parameters described below to set the strings.
 
- Every time you change the props or plugins, you'll need to rebuild (and `prebuild`) the native app.
+Every time you change the props or plugins, you'll need to rebuild (and `prebuild`) the native app.
 
- If no extra properties are added, defaults will be used.
+If no extra properties are added, defaults will be used.
 
 - `locationPermission` (_string_): Sets `NSLocationAlwaysAndWhenInUseUsageDescription`, `NSLocationAlwaysUsageDescription`, `NSLocationWhenInUseUsageDescription`
 
 - `motionPermission` (_string_): Sets `NSMotionUsageDescription`
-- 
 
 Edit `hypertrack-sdk-expo` item in your `app.json` or `app.config.js`:
 
@@ -101,10 +99,8 @@ Edit `hypertrack-sdk-expo` item in your `app.json` or `app.config.js`:
       [
         "hypertrack-sdk-expo",
         {
-          "locationPermission":
-            "PUT_YOUR_PERMISSION_HINT_MESSAGE_HERE",
-          "motionPermission":
-            "PUT_YOUR_PERMISSION_HINT_MESSAGE_HERE"
+          "locationPermission": "PUT_YOUR_PERMISSION_HINT_MESSAGE_HERE",
+          "motionPermission": "PUT_YOUR_PERMISSION_HINT_MESSAGE_HERE"
         }
       ]
     ]
