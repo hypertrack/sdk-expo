@@ -17,9 +17,6 @@ const withBackgroundModes: ConfigPlugin<Props> = (config, props) => {
   const {
     locationPermission: locationPermissionDescription,
     publishableKey,
-    automaticallyRequestPermissions,
-    allowMockLocations,
-    loggingEnabled,
   } = props || {};
 
   if (!publishableKey) {
@@ -49,12 +46,7 @@ const withBackgroundModes: ConfigPlugin<Props> = (config, props) => {
 
     // Set SDK init params
     newConfig.modResults.HyperTrackPublishableKey =
-      publishableKey ?? "INVALID_PUBLISHABLE_KEY";
-    newConfig.modResults.HyperTrackAutomaticallyRequestPermissions =
-      automaticallyRequestPermissions ?? false;
-    newConfig.modResults.HyperTrackAllowMockLocations =
-      allowMockLocations ?? false;
-    newConfig.modResults.HyperTrackLoggingEnabled = loggingEnabled ?? false;
+      publishableKey ?? "INVALID_PUBLISHABLE_KEY"; // TODO: should we crash here?
 
     return newConfig;
   });
