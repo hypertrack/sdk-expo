@@ -33,7 +33,6 @@ Add `hypertrack-sdk-expo` to [`plugins`](https://docs.expo.io/versions/latest/co
           "allowMockLocations": false,
           "loggingEnabled": true,
           "locationPermission": "We need your location to track delivered orders.",
-          "motionPermission": "We need your motion to track delivered orders.",
         },
       ],
     ]
