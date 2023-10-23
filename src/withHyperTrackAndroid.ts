@@ -92,10 +92,7 @@ const packagingOptionsContents = `
 const updateAndroidManifest: ConfigPlugin<Props> = (config, props) => {
   return withAndroidManifest(config, (newConfig) => {
     const {
-      publishableKey,
-      allowMockLocations,
-      loggingEnabled,
-      automaticallyRequestPermissions,
+      publishableKey
     } = props || {};
 
     if (!publishableKey) {
@@ -110,27 +107,6 @@ const updateAndroidManifest: ConfigPlugin<Props> = (config, props) => {
           application,
           "HyperTrackPublishableKey",
           publishableKey!
-        );
-      })
-      ?.map((application: ManifestApplication) => {
-        return addMetaDataItemToMainApplication(
-          application,
-          "HyperTrackAllowMockLocations",
-          allowMockLocations ? "true" : "false"
-        );
-      })
-      ?.map((application: ManifestApplication) => {
-        return addMetaDataItemToMainApplication(
-          application,
-          "HyperTrackLoggingEnabled",
-          loggingEnabled ? "true" : "false"
-        );
-      })
-      ?.map((application: ManifestApplication) => {
-        return addMetaDataItemToMainApplication(
-          application,
-          "HyperTrackAutomaticallyRequestPermissions",
-          automaticallyRequestPermissions ? "true" : "false"
         );
       });
 
