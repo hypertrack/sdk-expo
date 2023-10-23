@@ -24,16 +24,16 @@ Add `hypertrack-sdk-expo` to [`plugins`](https://docs.expo.io/versions/latest/co
 ```json
 {
   "expo": {
-    "plugins: [
+    "plugins": [
       [
-        'hypertrack-sdk-expo',
+        "hypertrack-sdk-expo",
         {
-          publishableKey: 'YourPublishableKey', // find this in the HyperTrack dashboard
-          automaticallyRequestPermissions: false,
-          allowMockLocations: false,
-          loggingEnabled: true,
-          locationPermission: 'We need your location to track delivered orders.',
-          motionPermission: 'We need your motion to track delivered orders.',
+          "publishableKey: "YourPublishableKey", // find this in the HyperTrack dashboard
+          "automaticallyRequestPermissions": false,
+          "allowMockLocations": false,
+          "loggingEnabled": true,
+          "locationPermission": "We need your location to track delivered orders.",
+          "motionPermission": "We need your motion to track delivered orders.",
         },
       ],
     ]
