@@ -93,11 +93,9 @@ You can use plugin parameters described below to set the strings.
 
 Every time you change the props or plugins, you'll need to rebuild (and `prebuild`) the native app.
 
-If no extra properties are added, defaults will be used.
-
 - `locationPermission` (_string_): Sets `NSLocationAlwaysAndWhenInUseUsageDescription`, `NSLocationAlwaysUsageDescription`, `NSLocationWhenInUseUsageDescription`
 
-- `motionPermission` (_string_): Sets `NSMotionUsageDescription`
+- `motionPermission` (**optional** _string_): Sets `NSMotionUsageDescription`
 
 Edit `hypertrack-sdk-expo` item in your `app.json` or `app.config.js`:
 
