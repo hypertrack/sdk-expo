@@ -8,6 +8,7 @@ import { withHyperTrackIOS } from "./withHyperTrackIOS";
 
 export type Props = {
   locationPermission?: string;
+  motionPermission?: string;
   publishableKey?: string;
 };
 const withHyperTrack: ConfigPlugin<Props> = (config, props) => {
@@ -19,5 +20,5 @@ const withHyperTrack: ConfigPlugin<Props> = (config, props) => {
 export default createRunOncePlugin(
   withHyperTrack,
   "hypertrack-sdk-expo",
-  "4.0.0"
+  "4.0.1"
 );

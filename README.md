@@ -30,8 +30,8 @@ Add `hypertrack-sdk-expo` to [`plugins`](https://docs.expo.io/versions/latest/co
         {
           "publishableKey": "YourPublishableKey", // find this in the HyperTrack dashboard
           "locationPermission": "We need your location to track delivered orders."
-        },
-      ],
+        }
+      ]
     ]
   }
 }
@@ -73,16 +73,17 @@ For `Bare workflow projects, you can follow the [manual setup guide for React Na
 
 ## Versioning
 
-Ensure you use versions that work together!
+Ensure you use versions that work together! These are the ones that have been tested by us at the time of release:
 
 | `expo`   | `hypertrack-sdk-expo` | `hypertrack-sdk-react-native` |
 | -------- | --------------------- | ----------------------------- |
-| ^45.0.0  | 1.0.0                 | ^7.19.1                       |
-| ^46.0.14 | 1.1.0                 | ^8.2.1                        |
-| ^46.0.14 | 1.2.0                 | ^8.2.1                        |
-| ^47.0.0  | 2.0.0                 | ^9.0.0                        |
-| ^48.0.0  | 3.0.0                 | ^9.0.0                        |
+| ^49.0.13 | 4.0.1                 | ^11.0.9                       |
 | ^49.0.0  | 4.0.0                 | ^11.0.2                       |
+| ^48.0.0  | 3.0.0                 | ^9.0.0                        |
+| ^47.0.0  | 2.0.0                 | ^9.0.0                        |
+| ^46.0.14 | 1.2.0                 | ^8.2.1                        |
+| ^46.0.14 | 1.1.0                 | ^8.2.1                        |
+| ^45.0.0  | 1.0.0                 | ^7.19.1                       |
 
 ## Configuring permission purpose strings
 

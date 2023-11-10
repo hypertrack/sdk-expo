@@ -1,13 +1,6 @@
 import { ConfigPlugin, withInfoPlist } from "@expo/config-plugins";
 import { Props } from ".";
 
-const LOCATION_PERMISSION_HINT =
-  "You need this permission to allow HyperTrack to track your location";
-
-const NSLocationAlwaysAndWhenInUseUsageDescription = LOCATION_PERMISSION_HINT;
-const NSLocationAlwaysUsageDescription = LOCATION_PERMISSION_HINT;
-const NSLocationWhenInUseUsageDescription = LOCATION_PERMISSION_HINT;
-
 export const withHyperTrackIOS: ConfigPlugin<Props> = (config, props) => {
   withBackgroundModes(config, props);
   return config;
@@ -16,6 +9,7 @@ export const withHyperTrackIOS: ConfigPlugin<Props> = (config, props) => {
 const withBackgroundModes: ConfigPlugin<Props> = (config, props) => {
   const {
     locationPermission: locationPermissionDescription,
+    motionPermission: motionPermissionDescription,
     publishableKey,
   } = props || {};
 
@@ -37,13 +31,12 @@ const withBackgroundModes: ConfigPlugin<Props> = (config, props) => {
 
     // Set permission descriptions
     newConfig.modResults.NSLocationAlwaysAndWhenInUseUsageDescription =
-      locationPermissionDescription ??
-      NSLocationAlwaysAndWhenInUseUsageDescription;
+      locationPermissionDescription;
     newConfig.modResults.NSLocationAlwaysUsageDescription =
-      locationPermissionDescription ?? NSLocationAlwaysUsageDescription;
+      locationPermissionDescription;
     newConfig.modResults.NSLocationWhenInUseUsageDescription =
-      locationPermissionDescription ?? NSLocationWhenInUseUsageDescription;
-
+      locationPermissionDescription;
+    newConfig.modResults.NSMotionUsageDescription = motionPermissionDescription;
     // Set SDK init params
     newConfig.modResults.HyperTrackPublishableKey =
       publishableKey ?? "INVALID_PUBLISHABLE_KEY"; // TODO: should we crash here?
