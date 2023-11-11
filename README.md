@@ -1,4 +1,4 @@
-# HyperTrack Expo config plugin for React Native HyperTrack SDK
+# Expo config plugin for React Native HyperTrack SDK
 
 [![GitHub](https://img.shields.io/github/license/hypertrack/sdk-expo?color=orange)](./LICENSE)
 [![npm](https://img.shields.io/npm/v/hypertrack-sdk-expo)](https://www.npmjs.com/package/hypertrack-sdk-expo)
