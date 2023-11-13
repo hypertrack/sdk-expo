@@ -12,57 +12,6 @@ Expo [config plugin](https://docs.expo.io/guides/config-plugins/) enables usage 
 
 For information about how to get started with Expo and React Native HyperTrack SDK, please check this [Guide](https://www.hypertrack.com/docs/install-sdk-expo).
 
-## Installation
-
-- `npx expo install hypertrack-sdk-expo`
-- `npx expo install hypertrack-sdk-react-native`
-
-### Add HyperTrack Expo plugin to the app
-
-Add `hypertrack-sdk-expo` to [`plugins`](https://docs.expo.io/versions/latest/config/app/#plugins) array of your `app.json` or `app.config.js`:
-
-```json
-{
-  "expo": {
-    "plugins": [
-      [
-        "hypertrack-sdk-expo",
-        {
-          "publishableKey": "YourPublishableKey", // find this in the HyperTrack dashboard
-          "locationPermission": "We need your location to track delivered orders."
-        }
-      ]
-    ]
-  }
-}
-```
-
-### Set required build properties
-
-Use [expo-build-properties](https://docs.expo.dev/versions/latest/sdk/build-properties/) to set build properties.
-
-Run `npx expo install expo-build-properties` and add this to `plugins` in `app.json` or `app.config.js`:
-
-```json
-[
-  "expo-build-properties",
-  {
-    "android": {
-      "minSdkVersion": 21
-    }
-  }
-]
-```
-
-### Set up push notifications
-
-- For iOS, to enable push notifcations you need to add [push notifications credentials](https://docs.expo.dev/app-signing/managed-credentials/#ios)
-- For Android, to enable push notifcations you need to use [FCM for Push Notifications](https://docs.expo.dev/push-notifications/using-fcm/)
-
-#### Manual Setup
-
-For `Bare workflow projects, you can follow the [manual setup guide for React Native](https://hypertrack.com/docs/install-sdk-react-native/#set-up-silent-push-notifications).
-
 ## Sample code
 
 [Quickstart Expo app](https://github.com/hypertrack/quickstart-expo)
@@ -84,33 +33,3 @@ Ensure you use versions that work together! These are the ones that have been te
 | ^46.0.14 | 1.2.0                 | ^8.2.1                        |
 | ^46.0.14 | 1.1.0                 | ^8.2.1                        |
 | ^45.0.0  | 1.0.0                 | ^7.19.1                       |
-
-## Configuring permission purpose strings
-
-iOS requires specifying [permission purpose strings](https://hypertrack.com/docs/install-sdk-ios/#add-location-and-motion-purpose-strings) in `Info.plist` for app to build.
-
-You can use plugin parameters described below to set the strings.
-
-Every time you change the props or plugins, you'll need to rebuild (and `prebuild`) the native app.
-
-- `locationPermission` (_string_): Sets `NSLocationAlwaysAndWhenInUseUsageDescription`, `NSLocationAlwaysUsageDescription`, `NSLocationWhenInUseUsageDescription`
-
-- `motionPermission` (**optional** _string_): Sets `NSMotionUsageDescription`
-
-Edit `hypertrack-sdk-expo` item in your `app.json` or `app.config.js`:
-
-```json
-{
-  "expo": {
-    "plugins": [
-      [
-        "hypertrack-sdk-expo",
-        {
-          "locationPermission": "PUT_YOUR_PERMISSION_HINT_MESSAGE_HERE",
-          "motionPermission": "PUT_YOUR_PERMISSION_HINT_MESSAGE_HERE"
-        }
-      ]
-    ]
-  }
-}
-```
