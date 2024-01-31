@@ -4,7 +4,9 @@ import {
   withInfoPlist,
   withDangerousMod,
   withAppDelegate,
+  withXcodeProject,
 } from "@expo/config-plugins";
+import { withBuildSourceFile } from "@expo/config-plugins/build/ios/XcodeProjectFile";
 import * as codegen from "@expo/config-plugins/build/utils/generateCode";
 
 import { Props } from ".";
@@ -20,12 +22,9 @@ export const withHyperTrackIOS: ConfigPlugin<Props> = (config, props) => {
 };
 
 const withHTRNProxy: ConfigPlugin<Props> = (config, props) => {
-  let modifiedConfig = withDangerousMod(config, [
-    "ios",
-    async (config) => {
-      // proxy HyperTrack SDK calls
-      const newFileName = "HyperTrack.swift";
-      const newFileContent = `
+  let modifiedConfig = withBuildSourceFile(config, {
+    filePath: "HyperTrack.swift",
+    contents: `
 import Foundation
 import HyperTrack
 
@@ -34,26 +33,23 @@ import HyperTrack
     HyperTrack.didRegisterForRemoteNotificationsWithDeviceToken(deviceToken)
   }
 }
-`;
-      const newFilePath = path.resolve(
-        config.modRequest.platformProjectRoot,
-        newFileName
-      );
-      if (!fs.existsSync(newFilePath)) {
-        fs.writeFileSync(newFilePath, newFileContent);
-      }
-      return config;
-    },
-  ]);
+`,
+    overwrite: true,
+  });
   // add proxied function calls to AppDelegate
   return withHyperTrackAppDelegate(modifiedConfig, props);
 };
 
 const withHyperTrackAppDelegate: ConfigPlugin<Props> = (config, props) => {
+  let projectName: string | undefined = undefined;
+  let _ = withXcodeProject(config, (config) => {
+    projectName = config.modRequest.projectName;
+    return config;
+  });
+
   return withAppDelegate(config, (config) => {
     if (["objc", "objcpp"].includes(config.modResults.language)) {
       try {
-        let projectName = config.name;
         // work around source: https://github.com/expo/expo/issues/17705#issuecomment-1196251146
         //> Using #import "ExpoModulesCore-Swift.h" just before #import "ProjectName-Swift.h" in AppDelegate.mm should resolve the problem
         // then import the bridging header for the project
