@@ -77,6 +77,7 @@ Ensure you use versions that work together! These are the ones that have been te
 
 | `expo`   | `hypertrack-sdk-expo` | `hypertrack-sdk-react-native` |
 | -------- | --------------------- | ----------------------------- |
+| ^50.0.4  | 4.1.0                 | ^13.1.0                       |
 | ^49.0.13 | 4.0.1                 | ^11.0.9                       |
 | ^49.0.0  | 4.0.0                 | ^11.0.2                       |
 | ^48.0.0  | 3.0.0                 | ^9.0.0                        |
@@ -84,6 +85,10 @@ Ensure you use versions that work together! These are the ones that have been te
 | ^46.0.14 | 1.2.0                 | ^8.2.1                        |
 | ^46.0.14 | 1.1.0                 | ^8.2.1                        |
 | ^45.0.0  | 1.0.0                 | ^7.19.1                       |
+
+## Working around missing device push token on iOS
+
+If your devices are missing the push token, as a workaround you can set `proxyDevicePushTokenCall` plugin property to `true`. This will ensure you are calling HyperTrack SDK as soon as the device token is received in the AppDelegate.
 
 ## Configuring permission purpose strings
 
