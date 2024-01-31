@@ -9,7 +9,8 @@ import { withHyperTrackIOS } from "./withHyperTrackIOS";
 export type Props = {
   locationPermission?: string;
   motionPermission?: string;
-  publishableKey?: string;
+  publishableKey: string;
+  proxyDevicePushTokenCall?: boolean;
 };
 const withHyperTrack: ConfigPlugin<Props> = (config, props) => {
   config = withHyperTrackIOS(config, props);
