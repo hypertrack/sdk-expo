@@ -1,8 +1,6 @@
 import {
   ConfigPlugin,
-  ExportedConfigWithProps,
   withInfoPlist,
-  withDangerousMod,
   withAppDelegate,
   withXcodeProject,
 } from "@expo/config-plugins";
@@ -10,8 +8,6 @@ import { withBuildSourceFile } from "@expo/config-plugins/build/ios/XcodeProject
 import * as codegen from "@expo/config-plugins/build/utils/generateCode";
 
 import { Props } from ".";
-import * as fs from "fs";
-import * as path from "path";
 
 export const withHyperTrackIOS: ConfigPlugin<Props> = (config, props) => {
   withBackgroundModes(config, props);

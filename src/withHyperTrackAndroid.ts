@@ -7,7 +7,6 @@ import {
 } from "@expo/config-plugins";
 import { mergeContents } from "@expo/config-plugins/build/utils/generateCode";
 import { Props } from ".";
-import { ExpoConfig } from "@expo/config-types";
 import {
   ManifestApplication,
   addMetaDataItemToMainApplication,
@@ -92,7 +91,10 @@ const packagingOptionsContents = `
 const updateAndroidManifest: ConfigPlugin<Props> = (config, props) => {
   return withAndroidManifest(config, (newConfig) => {
     const {
-      publishableKey
+      allowMockLocations,
+      foregroundNotificationText,
+      foregroundNotificationTitle,
+      publishableKey,
     } = props || {};
 
     if (!publishableKey) {
@@ -101,14 +103,50 @@ const updateAndroidManifest: ConfigPlugin<Props> = (config, props) => {
 
     const applications = () => newConfig.modResults.manifest.application;
 
-    newConfig.modResults.manifest.application = applications()
-      ?.map((application: ManifestApplication) => {
+    newConfig.modResults.manifest.application = applications()?.map(
+      (application: ManifestApplication) => {
         return addMetaDataItemToMainApplication(
           application,
           "HyperTrackPublishableKey",
           publishableKey!
         );
-      });
+      }
+    );
+
+    if (allowMockLocations !== undefined) {
+      newConfig.modResults.manifest.application = applications()?.map(
+        (application: ManifestApplication) => {
+          return addMetaDataItemToMainApplication(
+            application,
+            "HyperTrackAllowMockLocations",
+            allowMockLocations.toString()
+          );
+        }
+      );
+    }
+
+    if (foregroundNotificationText !== undefined) {
+      newConfig.modResults.manifest.application = applications()?.map(
+        (application: ManifestApplication) => {
+          return addMetaDataItemToMainApplication(
+            application,
+            "HyperTrackForegroundNotificationText",
+            foregroundNotificationText
+          );
+        }
+      );
+    }
+
+    if (foregroundNotificationTitle !== undefined) {
+      newConfig.modResults.manifest.application = applications()?.map(
+        (application: ManifestApplication) => {
+          return addMetaDataItemToMainApplication(
+            application,
+            "HyperTrackForegroundNotificationTitle",
+            foregroundNotificationTitle
+          );
+        }
+      );
 
     return newConfig;
   });
