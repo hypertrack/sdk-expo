@@ -90,7 +90,12 @@ const packagingOptionsContents = `
 
 const updateAndroidManifest: ConfigPlugin<Props> = (config, props) => {
   return withAndroidManifest(config, (newConfig) => {
-    const { publishableKey } = props || {};
+    const {
+      allowMockLocations,
+      foregroundNotificationText,
+      foregroundNotificationTitle,
+      publishableKey,
+    } = props || {};
 
     if (!publishableKey) {
       throw new Error("'publishableKey' param is required");
@@ -107,6 +112,41 @@ const updateAndroidManifest: ConfigPlugin<Props> = (config, props) => {
         );
       }
     );
+
+    if (allowMockLocations !== undefined) {
+      newConfig.modResults.manifest.application = applications()?.map(
+        (application: ManifestApplication) => {
+          return addMetaDataItemToMainApplication(
+            application,
+            "HyperTrackAllowMockLocations",
+            allowMockLocations.toString()
+          );
+        }
+      );
+    }
+
+    if (foregroundNotificationText !== undefined) {
+      newConfig.modResults.manifest.application = applications()?.map(
+        (application: ManifestApplication) => {
+          return addMetaDataItemToMainApplication(
+            application,
+            "HyperTrackForegroundNotificationText",
+            foregroundNotificationText
+          );
+        }
+      );
+    }
+
+    if (foregroundNotificationTitle !== undefined) {
+      newConfig.modResults.manifest.application = applications()?.map(
+        (application: ManifestApplication) => {
+          return addMetaDataItemToMainApplication(
+            application,
+            "HyperTrackForegroundNotificationTitle",
+            foregroundNotificationTitle
+          );
+        }
+      );
 
     return newConfig;
   });
