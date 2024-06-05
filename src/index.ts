@@ -11,6 +11,7 @@ export type Props = {
   motionPermission?: string;
   publishableKey: string;
   proxyDevicePushTokenCall?: boolean;
+  swizzlingDidReceiveRemoteNotificationEnabled?: boolean;
 };
 const withHyperTrack: ConfigPlugin<Props> = (config, props) => {
   config = withHyperTrackIOS(config, props);
