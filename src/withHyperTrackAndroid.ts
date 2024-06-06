@@ -7,7 +7,6 @@ import {
 } from "@expo/config-plugins";
 import { mergeContents } from "@expo/config-plugins/build/utils/generateCode";
 import { Props } from ".";
-import { ExpoConfig } from "@expo/config-types";
 import {
   ManifestApplication,
   addMetaDataItemToMainApplication,
@@ -91,9 +90,7 @@ const packagingOptionsContents = `
 
 const updateAndroidManifest: ConfigPlugin<Props> = (config, props) => {
   return withAndroidManifest(config, (newConfig) => {
-    const {
-      publishableKey
-    } = props || {};
+    const { publishableKey } = props || {};
 
     if (!publishableKey) {
       throw new Error("'publishableKey' param is required");
@@ -101,14 +98,15 @@ const updateAndroidManifest: ConfigPlugin<Props> = (config, props) => {
 
     const applications = () => newConfig.modResults.manifest.application;
 
-    newConfig.modResults.manifest.application = applications()
-      ?.map((application: ManifestApplication) => {
+    newConfig.modResults.manifest.application = applications()?.map(
+      (application: ManifestApplication) => {
         return addMetaDataItemToMainApplication(
           application,
           "HyperTrackPublishableKey",
           publishableKey!
         );
-      });
+      }
+    );
 
     return newConfig;
   });

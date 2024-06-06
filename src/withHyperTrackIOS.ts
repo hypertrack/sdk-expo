@@ -97,6 +97,7 @@ const withBackgroundModes: ConfigPlugin<Props> = (config, props) => {
     locationPermission: locationPermissionDescription,
     motionPermission: motionPermissionDescription,
     publishableKey,
+    swizzlingDidReceiveRemoteNotificationEnabled,
   } = props || {};
 
   if (!publishableKey) {
@@ -123,9 +124,24 @@ const withBackgroundModes: ConfigPlugin<Props> = (config, props) => {
     newConfig.modResults.NSLocationWhenInUseUsageDescription =
       locationPermissionDescription;
     newConfig.modResults.NSMotionUsageDescription = motionPermissionDescription;
+
     // Set SDK init params
-    newConfig.modResults.HyperTrackPublishableKey =
-      publishableKey ?? "INVALID_PUBLISHABLE_KEY"; // TODO: should we crash here?
+    if (publishableKey) {
+      newConfig.modResults.HyperTrackPublishableKey = publishableKey;
+    } else {
+      throw new Error(
+        "'publishableKey' param is required for HyperTrack Expo plugin"
+      );
+    }
+    if (swizzlingDidReceiveRemoteNotificationEnabled) {
+      if (typeof swizzlingDidReceiveRemoteNotificationEnabled !== "boolean") {
+        throw new Error(
+          "'swizzlingDidReceiveRemoteNotificationEnabled' param must be a boolean"
+        );
+      }
+      newConfig.modResults.HyperTrackSwizzlingDidReceiveRemoteNotificationEnabled =
+        swizzlingDidReceiveRemoteNotificationEnabled;
+    }
 
     return newConfig;
   });
