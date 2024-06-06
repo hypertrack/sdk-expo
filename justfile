@@ -25,19 +25,31 @@ open-github-releases:
 push-tag:
     #!/usr/bin/env sh
     set -euo pipefail
-    if [ $(git symbolic-ref --short HEAD) = "master" ] ; then
+    if [ $(git symbolic-ref --short HEAD) = "main" ] ; then
         VERSION=$(just version)
         git tag $VERSION
         git push origin $VERSION
         just _open-github-release-data
     else
-        echo "You are not on master branch"
+        echo "You are not on main branch"
     fi
 
-release:
-    npm publish --dry-run
-    @echo "THIS IS DRY RUN. Check if everything is ok and then run 'npm publish'. Checklist:"
-    @echo "\t- check the release steps in CONTRIBUTING"
+release publish="dry-run":
+    #!/usr/bin/env sh
+    set -euo pipefail
+    VERSION=$(just version)
+    if [ {{publish}} = "publish" ]; then
+        BRANCH=$(git branch --show-current)
+        if [ $BRANCH != "main" ]; then
+            echo "You must be on main branch to publish a new version (current branch: $BRANCH))"
+            exit 1
+        fi
+        echo "Are you sure you want to publish version $VERSION? (y/N)"
+        just _ask-confirm
+        open "https://www.npmjs.com/package/hypertrack-sdk-expo/v/$VERSION"
+    else
+        npm publish --dry-run
+    fi
 
 setup:
   npx yarn
