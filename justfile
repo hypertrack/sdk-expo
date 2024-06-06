@@ -1,7 +1,7 @@
 alias pt := push-tag
 alias v := version
 
-REPOSITORY_NAME := "sdk-react-native"
+REPOSITORY_NAME := "sdk-expo"
 
 # Source: https://semver.org/#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string
 # \ are escaped
