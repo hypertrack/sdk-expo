@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.3.0] - 2024-09-05
+
+### Changed
+
+- starting with iOS SDK `5.7.0` your app must set the `NSMotionUsageDescription` in your `Info.plist`
+  - you can set the `motionPermissionDescription` config property to do so
+
+example raw key-value pair in your Info.plist:
+
+```xml
+<key>NSMotionUsageDescription</key>
+<string>This app requires motion detection access to function properly.</string>
+```
+
 ## [4.2.0] - 2024-06-06
 
 ### Added
@@ -65,6 +79,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release of the expo plugin.
 
+[4.3.0]: https://github.com/hypertrack/sdk-expo/releases/tag/4.3.0
 [4.2.0]: https://github.com/hypertrack/sdk-expo/releases/tag/4.2.0
 [4.1.0]: https://github.com/hypertrack/sdk-expo/releases/tag/4.1.0
 [4.0.1]: https://github.com/hypertrack/sdk-expo/releases/tag/4.0.1

@@ -2,7 +2,7 @@
 
 [![GitHub](https://img.shields.io/github/license/hypertrack/sdk-expo?color=orange)](./LICENSE)
 [![npm](https://img.shields.io/npm/v/hypertrack-sdk-expo)](https://www.npmjs.com/package/hypertrack-sdk-expo)
-[![hypertrack-sdk-react-native](https://img.shields.io/badge/hypertrack_sdk_react_native-11.0.9-brightgreen.svg)](https://www.npmjs.com/package/hypertrack-sdk-expo)
+[![hypertrack-sdk-react-native](https://img.shields.io/badge/hypertrack_sdk_react_native-13.5.1-brightgreen.svg)](https://www.npmjs.com/package/hypertrack-sdk-expo)
 
 [HyperTrack](https://www.hypertrack.com) lets you add live location tracking to your mobile app. Live location is made available along with ongoing activity, tracking controls and tracking outage with reasons.
 
@@ -19,6 +19,7 @@ For information about how to get started with Expo and React Native HyperTrack S
 ```
 npx expo install hypertrack-sdk-react-native \
 hypertrack-sdk-react-native-plugin-android-location-services-google \
+hypertrack-sdk-react-native-plugin-android-motion-service-firebase \
 hypertrack-sdk-react-native-plugin-android-push-service-firebase
 ```
 
@@ -40,7 +41,8 @@ Add `hypertrack-sdk-expo` to [`plugins`](https://docs.expo.io/versions/latest/co
         "hypertrack-sdk-expo",
         {
           "publishableKey": "YourPublishableKey", // find this in the HyperTrack dashboard
-          "locationPermission": "We need your location to track delivered orders."
+          "locationPermission": "We need your location to track delivered orders.",
+          "motionPermission": "We need your motion to improve in-app experience."
         }
       ]
     ]
@@ -88,6 +90,8 @@ Ensure you use versions that work together! These are the ones that have been te
 
 | `expo`   | `hypertrack-sdk-expo` | `hypertrack-sdk-react-native` |
 | -------- | --------------------- | ----------------------------- |
+| ^51.0.32 | 4.3.0                 | ^13.5.1                       |
+| ^50.0.4  | 4.2.0                 | ^13.1.0                       |
 | ^50.0.4  | 4.1.0                 | ^13.1.0                       |
 | ^49.0.13 | 4.0.1                 | ^11.0.9                       |
 | ^49.0.0  | 4.0.0                 | ^11.0.2                       |
@@ -111,7 +115,7 @@ Every time you change the props or plugins, you'll need to rebuild (and `prebuil
 
 - `locationPermission` (_string_): Sets `NSLocationAlwaysAndWhenInUseUsageDescription`, `NSLocationAlwaysUsageDescription`, `NSLocationWhenInUseUsageDescription`
 
-- `motionPermission` (**optional** _string_): Sets `NSMotionUsageDescription`
+- `motionPermission` (_string_): Sets `NSMotionUsageDescription`
 
 Edit `hypertrack-sdk-expo` item in your `app.json` or `app.config.js`:
 
