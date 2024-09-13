@@ -9,15 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- starting with iOS SDK `5.7.0` your app must set the `NSMotionUsageDescription` in your `Info.plist`
-  - you can set the `motionPermissionDescription` config property to do so
-
-example raw key-value pair in your Info.plist:
-
-```xml
-<key>NSMotionUsageDescription</key>
-<string>This app requires motion detection access to function properly.</string>
-```
+- Added new `motionPermission` param to set the `NSMotionUsageDescription` value in your `Info.plist`. It is required by iOS SDK [5.7.0](https://github.com/hypertrack/sdk-ios/releases/tag/5.7.0) and higher.
 
 ## [4.2.0] - 2024-06-06
 
