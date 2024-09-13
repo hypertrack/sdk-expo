@@ -93,6 +93,7 @@ const withHyperTrackAppDelegate: ConfigPlugin<Props> = (config, props) => {
 };
 
 const withBackgroundModes: ConfigPlugin<Props> = (config, props) => {
+  // the plugin param key name is on the left side!
   const {
     locationPermission: locationPermissionDescription,
     motionPermission: motionPermissionDescription,
