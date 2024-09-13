@@ -2,7 +2,6 @@
 
 [![GitHub](https://img.shields.io/github/license/hypertrack/sdk-expo?color=orange)](./LICENSE)
 [![npm](https://img.shields.io/npm/v/hypertrack-sdk-expo)](https://www.npmjs.com/package/hypertrack-sdk-expo)
-[![hypertrack-sdk-react-native](https://img.shields.io/badge/hypertrack_sdk_react_native-13.5.1-brightgreen.svg)](https://www.npmjs.com/package/hypertrack-sdk-expo)
 
 [HyperTrack](https://www.hypertrack.com) lets you add live location tracking to your mobile app. Live location is made available along with ongoing activity, tracking controls and tracking outage with reasons.
 
@@ -22,6 +21,8 @@ hypertrack-sdk-react-native-plugin-android-location-services-google \
 hypertrack-sdk-react-native-plugin-android-motion-service-firebase \
 hypertrack-sdk-react-native-plugin-android-push-service-firebase
 ```
+
+Check the detailed installation guide for React Native [here](https://hypertrack.com/docs/install-sdk-react-native).
 
 ### Install Expo plugin
 
