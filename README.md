@@ -18,7 +18,7 @@ For information about how to get started with Expo and React Native HyperTrack S
 ```
 npx expo install hypertrack-sdk-react-native \
 hypertrack-sdk-react-native-plugin-android-location-services-google \
-hypertrack-sdk-react-native-plugin-android-motion-service-firebase \
+hypertrack-sdk-react-native-plugin-android-activity-service-google \
 hypertrack-sdk-react-native-plugin-android-push-service-firebase
 ```
 
