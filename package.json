@@ -42,6 +42,5 @@
   "peerDependencies": {
     "expo": "*"
   },
-  "upstreamPackage": "hypertrack-sdk-react-native",
-  "packageManager": "yarn@4.0.2"
+  "upstreamPackage": "hypertrack-sdk-react-native"
 }

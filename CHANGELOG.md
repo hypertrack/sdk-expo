@@ -5,11 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [4.3.0] - 2024-09-05
+## [4.3.0] - 2024-09-18
 
 ### Changed
 
-- Added new `motionPermission` param to set the `NSMotionUsageDescription` value in your `Info.plist`. It is required by iOS SDK [5.7.0](https://github.com/hypertrack/sdk-ios/releases/tag/5.7.0) and higher.
+- Updated Expo dependency to `51`
+
+### Fixed
+
+- Removed fixed package manager version
 
 ## [4.2.0] - 2024-06-06
 
