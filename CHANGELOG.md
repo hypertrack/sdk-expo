@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [4.3.0] - 2024-09-06
 
+### Changed
+
+- Updated `@expo/config-plugins` dependency to `8.x.x`
+- Updated other dependencies
+
 ### Fixed
 
 - Removed fixed package manager version
