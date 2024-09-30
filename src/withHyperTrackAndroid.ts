@@ -4,6 +4,7 @@ import {
   withAndroidManifest,
   withAppBuildGradle,
   withProjectBuildGradle,
+  withStringsXml,
 } from "@expo/config-plugins";
 import { mergeContents } from "@expo/config-plugins/build/utils/generateCode";
 import { Props } from ".";
@@ -11,6 +12,7 @@ import {
   ManifestApplication,
   addMetaDataItemToMainApplication,
 } from "@expo/config-plugins/build/android/Manifest";
+import { ExpoConfig } from "@expo/config-types";
 
 export const withHyperTrackAndroid: ConfigPlugin<Props> = (config, props) => {
   withAndroidPackage(config);
@@ -151,3 +153,32 @@ const updateAndroidManifest: ConfigPlugin<Props> = (config, props) => {
     return newConfig;
   });
 };
+
+// A custom config plugin to add a string to strings.xml
+const withCustomString = (config: ExpoConfig) => {
+  return withStringsXml(config, async (config) => {
+    config.modResults = addCustomString(
+      config.modResults,
+      "custom_string",
+      "My Custom String"
+    );
+    return config;
+  });
+};
+
+function withCustomString(config, name: string, value: string) {
+  let resources = config.modResults.resources;
+  if (!resources.string) {
+    resources.string = [];
+  }
+  const existing = resources.string.find(
+    (s: { $: { name: any } }) => s.$.name === name
+  );
+  if (!existing) {
+    resources.string.push({
+      _: value,
+      $: { name: name },
+    });
+  }
+  return config;
+}
