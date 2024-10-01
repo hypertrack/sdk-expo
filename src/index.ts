@@ -7,7 +7,7 @@ import { withHyperTrackAndroid } from "./withHyperTrackAndroid";
 import { withHyperTrackIOS } from "./withHyperTrackIOS";
 
 export type Props = {
-  allowMockLocations?: boolean;
+  allowMockLocation?: boolean;
   foregroundNotificationText?: string;
   foregroundNotificationTitle?: string;
   locationPermission?: string;

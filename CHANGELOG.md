@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Added new plugin prameter:
-    - `allowMockLocations` - to enable mock locations for testing
+    - `allowMockLocation` - to enable mock locations for testing
     - `foregroundNotificationTitle`, `foregroundNotificationText` - to configure foreground notification on Android
 
 

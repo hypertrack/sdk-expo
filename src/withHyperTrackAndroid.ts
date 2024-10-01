@@ -113,7 +113,7 @@ const packagingOptionsContents = `
 const updateAndroidManifest: ConfigPlugin<Props> = (config, props) => {
   return withAndroidManifest(config, (newConfig) => {
     const {
-      allowMockLocations,
+      allowMockLocation,
       foregroundNotificationText,
       foregroundNotificationTitle,
       publishableKey,
@@ -135,13 +135,13 @@ const updateAndroidManifest: ConfigPlugin<Props> = (config, props) => {
       }
     );
 
-    if (allowMockLocations !== undefined) {
+    if (allowMockLocation !== undefined) {
       newConfig.modResults.manifest.application = applications()?.map(
         (application: ManifestApplication) => {
           return addMetaDataItemToMainApplication(
             application,
-            "HyperTrackAllowMockLocations",
-            allowMockLocations.toString()
+            "HyperTrackAllowMockLocation",
+            allowMockLocation.toString()
           );
         }
       );
