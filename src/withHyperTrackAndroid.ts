@@ -1,4 +1,5 @@
 import {
+  AndroidConfig,
   ConfigPlugin,
   WarningAggregator,
   withAndroidManifest,
@@ -17,6 +18,7 @@ import { ExpoConfig } from "@expo/config-types";
 export const withHyperTrackAndroid: ConfigPlugin<Props> = (config, props) => {
   withAndroidPackage(config);
   withAndroidPackagingOptions(config);
+  addCustomStrings(config, props);
   updateAndroidManifest(config, props);
   return config;
 };
@@ -49,6 +51,24 @@ export function addMaven(src: string) {
     offset: 2,
     comment: "//",
   });
+}
+
+export function addCustomStrings(config: any, props: Props) {
+  const { foregroundNotificationText, foregroundNotificationTitle } = props || {};
+  if (foregroundNotificationText !== undefined) {
+    withCustomString(
+      config,
+      "hypertrack_foreground_notification_text",
+      foregroundNotificationText
+    );
+  }
+  if (foregroundNotificationTitle !== undefined) {
+    withCustomString(
+      config,
+      "hypertrack_foreground_notification_title",
+      foregroundNotificationTitle
+    );
+  }
 }
 
 export const withAndroidPackagingOptions: ConfigPlugin = (config) => {
@@ -133,7 +153,8 @@ const updateAndroidManifest: ConfigPlugin<Props> = (config, props) => {
           return addMetaDataItemToMainApplication(
             application,
             "HyperTrackForegroundNotificationText",
-            foregroundNotificationText
+            "@string/hypertrack_foreground_notification_text",
+            "resource"
           );
         }
       );
@@ -145,40 +166,31 @@ const updateAndroidManifest: ConfigPlugin<Props> = (config, props) => {
           return addMetaDataItemToMainApplication(
             application,
             "HyperTrackForegroundNotificationTitle",
-            foregroundNotificationTitle
+            "@string/hypertrack_foreground_notification_title",
+            "resource"
           );
         }
       );
+    }
 
     return newConfig;
   });
 };
 
-// A custom config plugin to add a string to strings.xml
-const withCustomString = (config: ExpoConfig) => {
-  return withStringsXml(config, async (config) => {
-    config.modResults = addCustomString(
-      config.modResults,
-      "custom_string",
-      "My Custom String"
+function withCustomString(
+  config: any,
+  name: string,
+  value: string
+): ExpoConfig {
+  return withStringsXml(config, (config) => {
+    config.modResults = AndroidConfig.Strings.setStringItem(
+      [
+        // XML represented as JSON
+        // <string name="expo_custom_value" translatable="false">value</string>
+        { $: { name, translatable: "false" }, _: value },
+      ],
+      config.modResults
     );
     return config;
   });
-};
-
-function withCustomString(config, name: string, value: string) {
-  let resources = config.modResults.resources;
-  if (!resources.string) {
-    resources.string = [];
-  }
-  const existing = resources.string.find(
-    (s: { $: { name: any } }) => s.$.name === name
-  );
-  if (!existing) {
-    resources.string.push({
-      _: value,
-      $: { name: name },
-    });
-  }
-  return config;
 }
