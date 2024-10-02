@@ -17,15 +17,6 @@ You can provide these params to the plugin in `app.json` to configure the plugin
 
 ## Parameters
 
-allowMockLocation?: boolean;
-foregroundNotificationText?: string;
-foregroundNotificationTitle?: string;
-locationPermission?: string;
-motionPermission?: string;
-publishableKey: string;
-proxyDevicePushTokenCall?: boolean;
-swizzlingDidReceiveRemoteNotificationEnabled?: boolean;
-
 Check [SDK configuration](https://hypertrack.com/docs/sdk-config) doc for more detailed informtion about the params.
 
 | Param                       | Type      | Description                                                                                                                                                                     |
