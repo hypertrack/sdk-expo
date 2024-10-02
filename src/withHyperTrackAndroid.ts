@@ -119,7 +119,7 @@ const updateAndroidManifest: ConfigPlugin<Props> = (config, props) => {
       publishableKey,
     } = props || {};
 
-    if (!publishableKey) {
+    if (publishableKey === undefined) {
       throw new Error("'publishableKey' param is required");
     }
 
