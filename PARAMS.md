@@ -30,7 +30,7 @@ Check [SDK configuration](https://hypertrack.com/docs/sdk-config) doc for more d
 
 | Param                       | Type      | Description                                                                                                                                                                     |
 | --------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| allowMockLocation           | `boolean` | Allow mock location to be used (for testing). False by default.                                                                                                                 |
+| allowMockLocation           | `boolean` | Allow mocking locations (if set to false any mocked location will be filtered and the outage will be displayed in the Dashboard). Default: false                                |
 | foregroundNotificationText  | `string`  | Text for the foreground service notification on Android                                                                                                                         |
 | foregroundNotificationTitle | `string`  | Title for the foreground service notification on Android                                                                                                                        |
 | locationPermission          | `string`  | Location permission permission purpose string (see [Configuring permission purpose strings](README.md#configuring-permission-purpose-strings))                                  |
