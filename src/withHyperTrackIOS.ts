@@ -93,6 +93,7 @@ const withBackgroundModes: ConfigPlugin<Props> = (config, props) => {
   const {
     locationPermission: locationPermissionDescription,
     motionPermission: motionPermissionDescription,
+    allowMockLocation,
     publishableKey,
     swizzlingDidReceiveRemoteNotificationEnabled,
   } = props || {};
@@ -139,7 +140,12 @@ const withBackgroundModes: ConfigPlugin<Props> = (config, props) => {
       newConfig.modResults.HyperTrackSwizzlingDidReceiveRemoteNotificationEnabled =
         swizzlingDidReceiveRemoteNotificationEnabled;
     }
-
+    if (allowMockLocation) {
+      if (typeof allowMockLocation !== "boolean") {
+        throw new Error("'allowMockLocation' param must be a boolean");
+      }
+      newConfig.modResults.HyperTrackAllowMockLocation = allowMockLocation;
+    }
     return newConfig;
   });
 };

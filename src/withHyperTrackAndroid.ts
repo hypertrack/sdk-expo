@@ -136,6 +136,9 @@ const updateAndroidManifest: ConfigPlugin<Props> = (config, props) => {
     );
 
     if (allowMockLocation !== undefined) {
+      if(typeof allowMockLocation !== "boolean") {
+        throw new Error("'allowMockLocation' param must be a boolean");
+      }
       newConfig.modResults.manifest.application = applications()?.map(
         (application: ManifestApplication) => {
           return addMetaDataItemToMainApplication(
