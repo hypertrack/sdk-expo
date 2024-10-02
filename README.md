@@ -51,22 +51,7 @@ Add `hypertrack-sdk-expo` to [`plugins`](https://docs.expo.io/versions/latest/co
 }
 ```
 
-### Set required build properties
-
-Use [expo-build-properties](https://docs.expo.dev/versions/latest/sdk/build-properties/) to set build properties.
-
-Run `npx expo install expo-build-properties` and add this to `plugins` in `app.json` or `app.config.js`:
-
-```json
-[
-  "expo-build-properties",
-  {
-    "android": {
-      "minSdkVersion": 21
-    }
-  }
-]
-```
+You can check more plugin configuration options [here](PARAMS.md).
 
 ### Set up push notifications
 
@@ -91,7 +76,7 @@ Ensure you use versions that work together! These are the ones that have been te
 
 | `expo`   | `hypertrack-sdk-expo` | `hypertrack-sdk-react-native` |
 | -------- | --------------------- | ----------------------------- |
-| ^51.0.32 | 4.3.0                 | ^13.5.1                       |
+| ^51.0.32 | ^4.3.0                | ^13.5.1                       |
 | ^50.0.4  | 4.2.0                 | ^13.1.0                       |
 | ^50.0.4  | 4.1.0                 | ^13.1.0                       |
 | ^49.0.13 | 4.0.1                 | ^11.0.9                       |
@@ -102,11 +87,13 @@ Ensure you use versions that work together! These are the ones that have been te
 | ^46.0.14 | 1.1.0                 | ^8.2.1                        |
 | ^45.0.0  | 1.0.0                 | ^7.19.1                       |
 
-## Working around missing device push token on iOS
+## FAQ
+
+### Working around missing device push token on iOS
 
 If your devices are missing the push token, as a workaround you can set `proxyDevicePushTokenCall` plugin property to `true`. This will ensure you are calling HyperTrack SDK as soon as the device token is received in the AppDelegate.
 
-## Configuring permission purpose strings
+### Configuring permission purpose strings
 
 iOS requires specifying [permission purpose strings](https://hypertrack.com/docs/install-sdk-ios/#add-location-and-motion-purpose-strings) in `Info.plist` for app to build.
 

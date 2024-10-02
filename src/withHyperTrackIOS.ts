@@ -1,8 +1,6 @@
 import {
   ConfigPlugin,
-  ExportedConfigWithProps,
   withInfoPlist,
-  withDangerousMod,
   withAppDelegate,
   withXcodeProject,
 } from "@expo/config-plugins";
@@ -10,12 +8,13 @@ import { withBuildSourceFile } from "@expo/config-plugins/build/ios/XcodeProject
 import * as codegen from "@expo/config-plugins/build/utils/generateCode";
 
 import { Props } from ".";
-import * as fs from "fs";
-import * as path from "path";
 
 export const withHyperTrackIOS: ConfigPlugin<Props> = (config, props) => {
   withBackgroundModes(config, props);
-  if (props.proxyDevicePushTokenCall) {
+  if (typeof props.proxyDevicePushTokenCall !== "boolean") {
+    throw new Error("'proxyDevicePushTokenCall' param must be a boolean");
+  }
+  if (props.proxyDevicePushTokenCall === true) {
     withHTRNProxy(config, props);
   }
   return config;
@@ -97,13 +96,10 @@ const withBackgroundModes: ConfigPlugin<Props> = (config, props) => {
   const {
     locationPermission: locationPermissionDescription,
     motionPermission: motionPermissionDescription,
+    allowMockLocation,
     publishableKey,
     swizzlingDidReceiveRemoteNotificationEnabled,
   } = props || {};
-
-  if (!publishableKey) {
-    throw new Error("'publishableKey' param is required");
-  }
 
   const BACKGROUND_MODE_KEYS = ["location", "remote-notification"];
   return withInfoPlist(config, (newConfig) => {
@@ -127,14 +123,14 @@ const withBackgroundModes: ConfigPlugin<Props> = (config, props) => {
     newConfig.modResults.NSMotionUsageDescription = motionPermissionDescription;
 
     // Set SDK init params
-    if (publishableKey) {
+    if (publishableKey !== undefined) {
       newConfig.modResults.HyperTrackPublishableKey = publishableKey;
     } else {
       throw new Error(
         "'publishableKey' param is required for HyperTrack Expo plugin"
       );
     }
-    if (swizzlingDidReceiveRemoteNotificationEnabled) {
+    if (swizzlingDidReceiveRemoteNotificationEnabled !== undefined) {
       if (typeof swizzlingDidReceiveRemoteNotificationEnabled !== "boolean") {
         throw new Error(
           "'swizzlingDidReceiveRemoteNotificationEnabled' param must be a boolean"
@@ -143,7 +139,12 @@ const withBackgroundModes: ConfigPlugin<Props> = (config, props) => {
       newConfig.modResults.HyperTrackSwizzlingDidReceiveRemoteNotificationEnabled =
         swizzlingDidReceiveRemoteNotificationEnabled;
     }
-
+    if (allowMockLocation !== undefined) {
+      if (typeof allowMockLocation !== "boolean") {
+        throw new Error("'allowMockLocation' param must be a boolean");
+      }
+      newConfig.modResults.HyperTrackAllowMockLocation = allowMockLocation;
+    }
     return newConfig;
   });
 };

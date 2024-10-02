@@ -7,6 +7,9 @@ import { withHyperTrackAndroid } from "./withHyperTrackAndroid";
 import { withHyperTrackIOS } from "./withHyperTrackIOS";
 
 export type Props = {
+  allowMockLocation?: boolean;
+  foregroundNotificationText?: string;
+  foregroundNotificationTitle?: string;
   locationPermission?: string;
   motionPermission?: string;
   publishableKey: string;
@@ -22,5 +25,5 @@ const withHyperTrack: ConfigPlugin<Props> = (config, props) => {
 export default createRunOncePlugin(
   withHyperTrack,
   "hypertrack-sdk-expo",
-  "4.3.0"
+  "4.4.0"
 );

@@ -1,9 +1,11 @@
 import {
+  AndroidConfig,
   ConfigPlugin,
   WarningAggregator,
   withAndroidManifest,
   withAppBuildGradle,
   withProjectBuildGradle,
+  withStringsXml,
 } from "@expo/config-plugins";
 import { mergeContents } from "@expo/config-plugins/build/utils/generateCode";
 import { Props } from ".";
@@ -11,10 +13,12 @@ import {
   ManifestApplication,
   addMetaDataItemToMainApplication,
 } from "@expo/config-plugins/build/android/Manifest";
+import { ExpoConfig } from "@expo/config-types";
 
 export const withHyperTrackAndroid: ConfigPlugin<Props> = (config, props) => {
   withAndroidPackage(config);
   withAndroidPackagingOptions(config);
+  addCustomStrings(config, props);
   updateAndroidManifest(config, props);
   return config;
 };
@@ -47,6 +51,24 @@ export function addMaven(src: string) {
     offset: 2,
     comment: "//",
   });
+}
+
+export function addCustomStrings(config: any, props: Props) {
+  const { foregroundNotificationText, foregroundNotificationTitle } = props || {};
+  if (foregroundNotificationText !== undefined) {
+    withCustomString(
+      config,
+      "hypertrack_foreground_notification_text",
+      foregroundNotificationText
+    );
+  }
+  if (foregroundNotificationTitle !== undefined) {
+    withCustomString(
+      config,
+      "hypertrack_foreground_notification_title",
+      foregroundNotificationTitle
+    );
+  }
 }
 
 export const withAndroidPackagingOptions: ConfigPlugin = (config) => {
@@ -90,9 +112,14 @@ const packagingOptionsContents = `
 
 const updateAndroidManifest: ConfigPlugin<Props> = (config, props) => {
   return withAndroidManifest(config, (newConfig) => {
-    const { publishableKey } = props || {};
+    const {
+      allowMockLocation,
+      foregroundNotificationText,
+      foregroundNotificationTitle,
+      publishableKey,
+    } = props || {};
 
-    if (!publishableKey) {
+    if (publishableKey === undefined) {
       throw new Error("'publishableKey' param is required");
     }
 
@@ -108,6 +135,65 @@ const updateAndroidManifest: ConfigPlugin<Props> = (config, props) => {
       }
     );
 
+    if (allowMockLocation !== undefined) {
+      if(typeof allowMockLocation !== "boolean") {
+        throw new Error("'allowMockLocation' param must be a boolean");
+      }
+      newConfig.modResults.manifest.application = applications()?.map(
+        (application: ManifestApplication) => {
+          return addMetaDataItemToMainApplication(
+            application,
+            "HyperTrackAllowMockLocation",
+            allowMockLocation.toString()
+          );
+        }
+      );
+    }
+
+    if (foregroundNotificationText !== undefined) {
+      newConfig.modResults.manifest.application = applications()?.map(
+        (application: ManifestApplication) => {
+          return addMetaDataItemToMainApplication(
+            application,
+            "HyperTrackForegroundNotificationText",
+            "@string/hypertrack_foreground_notification_text",
+            "resource"
+          );
+        }
+      );
+    }
+
+    if (foregroundNotificationTitle !== undefined) {
+      newConfig.modResults.manifest.application = applications()?.map(
+        (application: ManifestApplication) => {
+          return addMetaDataItemToMainApplication(
+            application,
+            "HyperTrackForegroundNotificationTitle",
+            "@string/hypertrack_foreground_notification_title",
+            "resource"
+          );
+        }
+      );
+    }
+
     return newConfig;
   });
 };
+
+function withCustomString(
+  config: any,
+  name: string,
+  value: string
+): ExpoConfig {
+  return withStringsXml(config, (config) => {
+    config.modResults = AndroidConfig.Strings.setStringItem(
+      [
+        // XML represented as JSON
+        // <string name="expo_custom_value" translatable="false">value</string>
+        { $: { name, translatable: "false" }, _: value },
+      ],
+      config.modResults
+    );
+    return config;
+  });
+}

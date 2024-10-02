@@ -7,6 +7,14 @@ REPOSITORY_NAME := "sdk-expo"
 # \ are escaped
 SEMVER_REGEX := "(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?"
 
+# MAKE SURE YOU HAVE
+# #!/usr/bin/env sh
+# set -e
+# AT THE TOP OF YOUR RECIPE
+_ask-confirm:
+  @bash -c 'read confirmation; if [[ $confirmation != "y" && $confirmation != "Y" ]]; then echo "Okay 😮‍💨 😅"; exit 1; fi'
+
+
 build:
     yarn expo-module clean
     yarn expo-module build
@@ -46,6 +54,7 @@ release publish="dry-run":
         fi
         echo "Are you sure you want to publish version $VERSION? (y/N)"
         just _ask-confirm
+        npm publish
         open "https://www.npmjs.com/package/hypertrack-sdk-expo/v/$VERSION"
     else
         npm publish --dry-run

@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.4.0] - 2024-09-30
+
+### Added
+
+- Added new plugin prameter:
+    - `allowMockLocation` - to enable mock locations for testing
+    - `foregroundNotificationTitle`, `foregroundNotificationText` - to configure foreground notification on Android
+
+
 ## [4.3.0] - 2024-09-18
 
 ### Changed
@@ -25,7 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- `proxyDevicePushTokenCall` config plugin property
+- Added `proxyDevicePushTokenCall` plugin property to enable calling HyperTrack SDK as soon as the device token is received in the AppDelegate
 
 ## [4.0.1] - 2023-11-11
 
@@ -75,6 +84,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release of the expo plugin.
 
+[4.4.0]: https://github.com/hypertrack/sdk-expo/releases/tag/4.4.0
 [4.3.0]: https://github.com/hypertrack/sdk-expo/releases/tag/4.3.0
 [4.2.0]: https://github.com/hypertrack/sdk-expo/releases/tag/4.2.0
 [4.1.0]: https://github.com/hypertrack/sdk-expo/releases/tag/4.1.0
