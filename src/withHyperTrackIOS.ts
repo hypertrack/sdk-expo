@@ -11,11 +11,13 @@ import { Props } from ".";
 
 export const withHyperTrackIOS: ConfigPlugin<Props> = (config, props) => {
   withBackgroundModes(config, props);
-  if (typeof props.proxyDevicePushTokenCall !== "boolean") {
-    throw new Error("'proxyDevicePushTokenCall' param must be a boolean");
-  }
-  if (props.proxyDevicePushTokenCall === true) {
-    withHTRNProxy(config, props);
+  if (props.proxyDevicePushTokenCall !== undefined) {
+    if (typeof props.proxyDevicePushTokenCall !== "boolean") {
+      throw new Error("'proxyDevicePushTokenCall' param must be a boolean");
+    }
+    if (props.proxyDevicePushTokenCall === true) {
+      withHTRNProxy(config, props);
+    }
   }
   return config;
 };

@@ -16,16 +16,16 @@ _ask-confirm:
   @bash -c 'read confirmation; if [[ $confirmation != "y" && $confirmation != "Y" ]]; then echo "Okay 😮‍💨 😅"; exit 1; fi'
 
 build:
-    yarn expo-module clean
-    yarn expo-module build
+    npm run expo-module clean
+    npm run expo-module build
 
 clean:
-  npx yarn clean
-  npx yarn cache clean --force
+  npm clean
+  npm cache clean --force
   rm -rf node_modules ~/Library/Developer/Xcode/DerivedData
 
 get-dependencies:
-    npm i
+    npm install
 
 open-github-prs:
     open "https://github.com/hypertrack/{{REPOSITORY_NAME}}/pulls"
@@ -64,8 +64,8 @@ release publish="dry-run":
     fi
 
 setup:
-  npx yarn
-  npx expo install --yarn
+  npm install
+  npx expo install
 
 version:
   @cat package.json | grep version | head -n 1 | grep -o -E '{{SEMVER_REGEX}}'
