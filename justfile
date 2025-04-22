@@ -1,3 +1,4 @@
+alias gd := get-dependencies
 alias pt := push-tag
 alias v := version
 
@@ -14,7 +15,6 @@ SEMVER_REGEX := "(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d
 _ask-confirm:
   @bash -c 'read confirmation; if [[ $confirmation != "y" && $confirmation != "Y" ]]; then echo "Okay 😮‍💨 😅"; exit 1; fi'
 
-
 build:
     yarn expo-module clean
     yarn expo-module build
@@ -23,6 +23,9 @@ clean:
   npx yarn clean
   npx yarn cache clean --force
   rm -rf node_modules ~/Library/Developer/Xcode/DerivedData
+
+get-dependencies:
+    npm i
 
 open-github-prs:
     open "https://github.com/hypertrack/{{REPOSITORY_NAME}}/pulls"
