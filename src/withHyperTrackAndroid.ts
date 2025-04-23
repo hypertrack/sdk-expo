@@ -13,7 +13,6 @@ import {
   ManifestApplication,
   addMetaDataItemToMainApplication,
 } from "@expo/config-plugins/build/android/Manifest";
-import { ExpoConfig } from "@expo/config-types";
 
 export const withHyperTrackAndroid: ConfigPlugin<Props> = (config, props) => {
   withAndroidPackage(config);
@@ -184,7 +183,7 @@ function withCustomString(
   config: any,
   name: string,
   value: string
-): ExpoConfig {
+) {
   return withStringsXml(config, (config) => {
     config.modResults = AndroidConfig.Strings.setStringItem(
       [
