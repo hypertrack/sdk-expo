@@ -13,16 +13,16 @@ SEMVER_REGEX := "(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d
 # set -e
 # AT THE TOP OF YOUR RECIPE
 _ask-confirm:
-  @bash -c 'read confirmation; if [[ $confirmation != "y" && $confirmation != "Y" ]]; then echo "Okay 😮‍💨 😅"; exit 1; fi'
+    @bash -c 'read confirmation; if [[ $confirmation != "y" && $confirmation != "Y" ]]; then echo "Okay 😮‍💨 😅"; exit 1; fi'
 
 build:
     npm run expo-module clean
     npm run expo-module build
 
 clean:
-  npm clean
-  npm cache clean --force
-  rm -rf node_modules ~/Library/Developer/Xcode/DerivedData
+    npm clean
+    npm cache clean --force
+    rm -rf node_modules ~/Library/Developer/Xcode/DerivedData
 
 get-dependencies:
     npm install
@@ -64,11 +64,11 @@ release publish="dry-run":
     fi
 
 setup:
-  npm install
-  npx expo install
+    npm install
+    npx expo install
 
 version:
-  @cat package.json | grep version | head -n 1 | grep -o -E '{{SEMVER_REGEX}}'
+    @cat package.json | grep version | head -n 1 | grep -o -E '{{SEMVER_REGEX}}'
 
 _open-github-release-data:
     code CHANGELOG.md
