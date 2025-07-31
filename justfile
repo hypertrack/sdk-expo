@@ -20,7 +20,6 @@ build:
     npm run expo-module build
 
 clean:
-    npm clean
     npm cache clean --force
     rm -rf node_modules ~/Library/Developer/Xcode/DerivedData
 
