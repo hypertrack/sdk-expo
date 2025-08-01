@@ -1,6 +1,6 @@
 {
   "name": "hypertrack-sdk-expo",
-  "version": "6.0.0",
+  "version": "6.1.0",
   "license": "MIT",
   "description": "Config plugin to auto configure hypertrack-sdk-react-native on prebuild",
   "homepage": "https://github.com/hypertrack/sdk-expo",
