@@ -90,7 +90,7 @@ const withHyperTrackAppDelegate: ConfigPlugin<Props> = (config, props) => {
         config.modResults.contents = codegen.mergeContents({
           tag: "hypertrack-sdk-expo-swift-import",
           src: config.modResults.contents,
-          newSrc: `import HyperTrackRNProxy`,
+          newSrc: `import HyperTrack`,
           anchor: /import Expo/,
           offset: 1,
           comment: "//",
