@@ -84,9 +84,46 @@ const withHyperTrackAppDelegate: ConfigPlugin<Props> = (config, props) => {
         }
         throw error;
       }
+    } else if (config.modResults.language === "swift") {
+      try {
+        // Add import for HyperTrackRNProxy
+        config.modResults.contents = codegen.mergeContents({
+          tag: "hypertrack-sdk-expo-swift-import",
+          src: config.modResults.contents,
+          newSrc: `import HyperTrackRNProxy`,
+          anchor: /import Expo/,
+          offset: 1,
+          comment: "//",
+        }).contents;
+
+        // Add didRegisterForRemoteNotificationsWithDeviceToken method for Swift
+        config.modResults.contents = codegen.mergeContents({
+          tag: "hypertrack-sdk-expo-swift-didRegisterForRemoteNotifications",
+          src: config.modResults.contents,
+          newSrc: `
+  public override func application(
+    _ application: UIApplication,
+    didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
+  ) {
+    HyperTrackRNProxy.didRegisterForRemoteNotifications(deviceToken: deviceToken)
+    super.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
+  }
+`,
+          anchor: /var reactNativeFactory: RCTReactNativeFactory?/,
+          offset: 2,
+          comment: "//",
+        }).contents;
+      } catch (error) {
+        if (error.code === "ERR_NO_MATCH") {
+          throw new Error(
+            `Cannot add HyperTrack to the project's Swift AppDelegate because it's malformed: ${error.message}`
+          );
+        }
+        throw error;
+      }
     } else {
       throw new Error(
-        "Cannot setup HyperTrack because the AppDelegate is not Objective C"
+        `Cannot setup HyperTrack because the AppDelegate is not Objective C or Swift: ${config.modResults.language}`
       );
     }
     return config;
