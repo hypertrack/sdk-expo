@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [6.1.0] - 2025-08-01
+
+### Added
+
+- Support for Swift AppDelegate
+
+## [6.0.0] - 2025-07-31
+
+### Changed
+
+- Updated Expo SDK to `53`
+
 ## [5.0.1] - 2025-04-25
 
 ### Changed
@@ -101,6 +113,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release of the expo plugin.
 
+[6.1.0]: https://github.com/hypertrack/sdk-expo/releases/tag/6.1.0
+[6.0.0]: https://github.com/hypertrack/sdk-expo/releases/tag/6.0.0
+[5.0.1]: https://github.com/hypertrack/sdk-expo/releases/tag/5.0.1
+[5.0.0]: https://github.com/hypertrack/sdk-expo/releases/tag/5.0.0
 [4.4.0]: https://github.com/hypertrack/sdk-expo/releases/tag/4.4.0
 [4.3.0]: https://github.com/hypertrack/sdk-expo/releases/tag/4.3.0
 [4.2.0]: https://github.com/hypertrack/sdk-expo/releases/tag/4.2.0
