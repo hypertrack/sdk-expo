@@ -32,12 +32,12 @@
   "author": "HyperTrack <help@hypertrack.com> (https://hypertrack.com)",
   "devDependencies": {
     "@types/node": "^22.5.4",
-    "expo": "^53.0.20",
-    "expo-module-scripts": "^4.1.9"
+    "expo": "^54.0.13",
+    "expo-module-scripts": "^5.0.7"
   },
   "dependencies": {
-    "@expo/config-plugins": "^10.1.2",
-    "expo-modules-core": "^2.5.0"
+    "@expo/config-plugins": "^54.0.2",
+    "expo-modules-core": "^3.0.21"
   },
   "peerDependencies": {
     "expo": "*"
