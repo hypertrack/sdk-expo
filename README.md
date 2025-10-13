@@ -76,6 +76,7 @@ Ensure you use versions that work together! These are the ones that have been te
 
 | `expo`   | `hypertrack-sdk-expo` | `hypertrack-sdk-react-native` |
 | -------- | --------------------- | ----------------------------- |
+| ^54.0.0  | ^7.0.0                | ^14.0.3                       |
 | ^53.0.20 | ^6.0.0                | ^14.0.2                       |
 | ^51.0.32 | ^4.3.0                | ^13.5.1                       |
 | ^50.0.4  | 4.2.0                 | ^13.1.0                       |
