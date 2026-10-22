@@ -1,8 +1,4 @@
-import {
-  AndroidConfig,
-  ConfigPlugin,
-  createRunOncePlugin,
-} from "@expo/config-plugins";
+import { ConfigPlugin, createRunOncePlugin } from "expo/config-plugins";
 import { withHyperTrackAndroid } from "./withHyperTrackAndroid";
 import { withHyperTrackIOS } from "./withHyperTrackIOS";
 

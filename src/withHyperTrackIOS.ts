@@ -1,11 +1,11 @@
 import {
+  CodeGenerator as codegen,
   ConfigPlugin,
+  IOSConfig,
   withInfoPlist,
   withAppDelegate,
   withXcodeProject,
-} from "@expo/config-plugins";
-import { withBuildSourceFile } from "@expo/config-plugins/build/ios/XcodeProjectFile";
-import * as codegen from "@expo/config-plugins/build/utils/generateCode";
+} from "expo/config-plugins";
 
 import { Props } from ".";
 
@@ -23,7 +23,7 @@ export const withHyperTrackIOS: ConfigPlugin<Props> = (config, props) => {
 };
 
 const withHTRNProxy: ConfigPlugin<Props> = (config, props) => {
-  let modifiedConfig = withBuildSourceFile(config, {
+  let modifiedConfig = IOSConfig.XcodeProjectFile.withBuildSourceFile(config, {
     filePath: "HyperTrack.swift",
     contents: `
 import Foundation
