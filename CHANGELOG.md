@@ -7,9 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [7.1.0] - 2026-11-21
+
 ### Added
 
-- `appTerminationNotification`, `appTerminationNotificationTitle`, and `appTerminationNotificationBody` plugin properties to configure the iOS app termination reminder
+- On iOS, workers who allow notifications can get a reminder to reopen your app if they swipe it away while tracking, while marked available, or with an active order. To enable it, set `appTerminationNotification` to `true` in the HyperTrack plugin options in your Expo app config. Use `appTerminationNotificationTitle` and `appTerminationNotificationBody` to customize the message.
 
 ## [7.0.0] - 2025-10-13
 
@@ -126,6 +128,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release of the expo plugin.
 
+[7.1.0]: https://github.com/hypertrack/sdk-expo/releases/tag/7.1.0
+[7.0.0]: https://github.com/hypertrack/sdk-expo/releases/tag/7.0.0
 [6.1.0]: https://github.com/hypertrack/sdk-expo/releases/tag/6.1.0
 [6.0.0]: https://github.com/hypertrack/sdk-expo/releases/tag/6.0.0
 [5.0.1]: https://github.com/hypertrack/sdk-expo/releases/tag/5.0.1
