@@ -6,13 +6,13 @@ import {
   withAppBuildGradle,
   withProjectBuildGradle,
   withStringsXml,
-} from "@expo/config-plugins";
-import { mergeContents } from "@expo/config-plugins/build/utils/generateCode";
+  CodeGenerator,
+} from "expo/config-plugins";
 import { Props } from ".";
-import {
-  ManifestApplication,
-  addMetaDataItemToMainApplication,
-} from "@expo/config-plugins/build/android/Manifest";
+
+const { mergeContents } = CodeGenerator;
+const { addMetaDataItemToMainApplication } = AndroidConfig.Manifest;
+type ManifestApplication = AndroidConfig.Manifest.ManifestApplication;
 
 export const withHyperTrackAndroid: ConfigPlugin<Props> = (config, props) => {
   withAndroidPackage(config);
