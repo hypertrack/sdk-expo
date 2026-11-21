@@ -136,6 +136,9 @@ const withBackgroundModes: ConfigPlugin<Props> = (config, props) => {
     locationPermission: locationPermissionDescription,
     motionPermission: motionPermissionDescription,
     allowMockLocation,
+    appTerminationNotification,
+    appTerminationNotificationBody,
+    appTerminationNotificationTitle,
     publishableKey,
     swizzlingDidReceiveRemoteNotificationEnabled,
   } = props || {};
@@ -183,6 +186,31 @@ const withBackgroundModes: ConfigPlugin<Props> = (config, props) => {
         throw new Error("'allowMockLocation' param must be a boolean");
       }
       newConfig.modResults.HyperTrackAllowMockLocation = allowMockLocation;
+    }
+    if (appTerminationNotification !== undefined) {
+      if (typeof appTerminationNotification !== "boolean") {
+        throw new Error("'appTerminationNotification' param must be a boolean");
+      }
+      newConfig.modResults.HyperTrackAppTerminationNotification =
+        appTerminationNotification;
+    }
+    if (appTerminationNotificationBody !== undefined) {
+      if (typeof appTerminationNotificationBody !== "string") {
+        throw new Error(
+          "'appTerminationNotificationBody' param must be a string"
+        );
+      }
+      newConfig.modResults.HyperTrackAppTerminationNotificationBody =
+        appTerminationNotificationBody;
+    }
+    if (appTerminationNotificationTitle !== undefined) {
+      if (typeof appTerminationNotificationTitle !== "string") {
+        throw new Error(
+          "'appTerminationNotificationTitle' param must be a string"
+        );
+      }
+      newConfig.modResults.HyperTrackAppTerminationNotificationTitle =
+        appTerminationNotificationTitle;
     }
     return newConfig;
   });

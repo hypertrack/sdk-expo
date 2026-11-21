@@ -8,6 +8,9 @@ import { withHyperTrackIOS } from "./withHyperTrackIOS";
 
 export type Props = {
   allowMockLocation?: boolean;
+  appTerminationNotification?: boolean;
+  appTerminationNotificationBody?: string;
+  appTerminationNotificationTitle?: string;
   foregroundNotificationText?: string;
   foregroundNotificationTitle?: string;
   locationPermission?: string;
